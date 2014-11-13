@@ -4,13 +4,14 @@
             [compojure.route :refer [resources]]
             [chord.http-kit :refer [wrap-websocket-handler]]
             [clojure.core.async :refer [<! >! put! close! go-loop]]
-            [hiccup.page :refer [html5 include-js]]))
+            [hiccup.page :refer [html5 include-js include-css]]))
 
 (defn page-frame []
   (html5
    [:head
     [:title "Muzak"]
-    (include-js "/js/main.js")]
+    (include-js "/js/main.js")
+    (include-css "/css/style.css")]
    [:body [:div#content]]))
 
 (defn ws-handler [{:keys [ws-channel] :as req}]
@@ -27,7 +28,7 @@
   (GET "/" [] (response (page-frame)))
   (GET "/ws" [] (-> ws-handler
                     (wrap-websocket-handler {:format :json-kw})))
-  (resources "/js" {:root "js"}))
+  (resources "/"))
 
 (def app
   #'app-routes)

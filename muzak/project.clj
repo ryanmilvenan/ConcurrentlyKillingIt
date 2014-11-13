@@ -24,20 +24,18 @@
   :frodo/config-resource "muzak-server-config.edn"
 
   :aliases {"start-server" ["do"
-                   ["shell" "mkdir" "-p"
-                    "target/resources"]
                    ["pdo"
                     ["cljsbuild" "auto"]
                     "frodo"]]}
 
   :source-paths ["src"]
 
-  :resource-paths ["resources" "target/resources"]
+  :resource-paths ["resources"]
 
   :cljsbuild {
     :builds [{
-      :sourth-paths ["src-cljs"]
+      :source-paths ["src-cljs"]
       :compiler {
-        :output-to "target/resources/js/main.js"
+        :output-to "resources/public/js/main.js"
         :optimizations :whitespace
         :pretty-print true}}]})
