@@ -1,18 +1,33 @@
 (ns muzak.core.handler
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+  (:require [ring.util.response :refer [response]]
+            [compojure.core :refer [defroutes GET]]
+            [compojure.route :refer [resources]]
+            [chord.http-kit :refer [wrap-websocket-handler]]
+            [clojure.core.async :refer [<! >! put! close! go-loop]]
+            [hiccup.page :refer [html5 include-js]]))
 
-; parse-int - Clojure code to parse a string as an integer
-(defn parse-int [s]
-  (Integer. (re-find  #"\d+" s )))
+(defn page-frame []
+  (html5
+   [:head
+    [:title "Muzak"]
+    (include-js "/js/main.js")]
+   [:body [:div#content]]))
+
+(defn ws-handler [{:keys [ws-channel] :as req}]
+  (println "Opened connection from" (:remote-addr req))
+  (go-loop []
+    (when-let [{:keys [message error] :as msg} (<! ws-channel)]
+      (prn "Message received:" msg)
+      (>! ws-channel (if error
+                       (format "Error: '%s'." (pr-str msg))
+                       {:received (format "You passed: '%s' at %s." (pr-str message) (java.util.Date.))}))
+      (recur))))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World!")
-  (GET "/user/:id" [id] (str "<h1>Hello user " (+ 10 (parse-int id)) " (we added 10) </h1>"))
-  (GET "/info" {ip :remote-addr} (str "<h1>Hello client IP " ip "  </h1>"))
-  (GET "/requestmap" request (str request))
-  (route/not-found "Not Found"))
+  (GET "/" [] (response (page-frame)))
+  (GET "/ws" [] (-> ws-handler
+                    (wrap-websocket-handler {:format :json-kw})))
+  (resources "/js" {:root "js"}))
 
 (def app
-  (wrap-defaults app-routes site-defaults))
+  #'app-routes)
