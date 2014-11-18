@@ -38386,26 +38386,72 @@ goog.require("dommy.core");
 goog.require("dommy.core");
 goog.require("cljs.core.async");
 muzak.event_handlers.page_body = function page_body(_BANG_events, new_event_ch) {
-  var dom14912 = document.createElement("div");
-  dom14912.appendChild(dommy.template.__GT_node_like.call(null, muzak.event_handlers.send_signal_button.call(null, new_event_ch)));
-  return dom14912;
+  var dom15597 = document.createElement("div");
+  if ("btn-grp") {
+    dom15597.className = ("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(dom15597.className) + " btn-grp").trim();
+  } else {
+  }
+  if ("buttons-checkbox") {
+    dom15597.setAttribute("data-toggle", "buttons-checkbox");
+  } else {
+  }
+  dom15597.appendChild(dommy.template.__GT_node_like.call(null, muzak.event_handlers.bpm_button.call(null, new_event_ch)));
+  dom15597.appendChild(dommy.template.__GT_node_like.call(null, muzak.event_handlers.filt1_button.call(null, new_event_ch)));
+  dom15597.appendChild(dommy.template.__GT_node_like.call(null, muzak.event_handlers.filt2_button.call(null, new_event_ch)));
+  return dom15597;
 };
-muzak.event_handlers.send_signal_button = function send_signal_button(new_event_ch) {
+muzak.event_handlers.bpm_button = function bpm_button(new_event_ch) {
   return muzak.event_handlers.with_click_handler.call(null, function() {
-    var dom14914 = document.createElement("input");
+    var dom15599 = document.createElement("input");
     if ("button") {
-      dom14914.setAttribute("type", "button");
+      dom15599.setAttribute("type", "button");
     } else {
     }
-    if (50) {
-      dom14914.setAttribute("size", 50);
+    if ("btn") {
+      dom15599.className = ("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(dom15599.className) + " btn").trim();
     } else {
     }
     if ("BPM") {
-      dom14914.setAttribute("value", "BPM");
+      dom15599.setAttribute("value", "BPM");
     } else {
     }
-    return dom14914;
+    return dom15599;
+  }(), new_event_ch);
+};
+muzak.event_handlers.filt1_button = function filt1_button(new_event_ch) {
+  return muzak.event_handlers.with_click_handler.call(null, function() {
+    var dom15601 = document.createElement("input");
+    if ("button") {
+      dom15601.setAttribute("type", "button");
+    } else {
+    }
+    if ("btn") {
+      dom15601.className = ("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(dom15601.className) + " btn").trim();
+    } else {
+    }
+    if ("FILT1") {
+      dom15601.setAttribute("value", "FILT1");
+    } else {
+    }
+    return dom15601;
+  }(), new_event_ch);
+};
+muzak.event_handlers.filt2_button = function filt2_button(new_event_ch) {
+  return muzak.event_handlers.with_click_handler.call(null, function() {
+    var dom15603 = document.createElement("input");
+    if ("button") {
+      dom15603.setAttribute("type", "button");
+    } else {
+    }
+    if ("btn") {
+      dom15603.className = ("" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(dom15603.className) + " btn").trim();
+    } else {
+    }
+    if ("FILT2") {
+      dom15603.setAttribute("value", "FILT2");
+    } else {
+    }
+    return dom15603;
   }(), new_event_ch);
 };
 muzak.event_handlers.with_click_handler = function with_click_handler($button, new_event_ch) {

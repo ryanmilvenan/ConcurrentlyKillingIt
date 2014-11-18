@@ -6,11 +6,21 @@
 
 (defn page-body [!events new-event-ch]
   (node
-   [:div
-   (send-signal-button new-event-ch)]))
+   [:div{:class "btn-grp", :data-toggle "buttons-checkbox"}
+   (bpm-button new-event-ch)
+   (filt1-button new-event-ch)
+   (filt2-button new-event-ch)]))
 
-(defn send-signal-button [new-event-ch]
-  (-> (node [:input {:type "button", :size 50, :value "BPM"}])
+(defn bpm-button [new-event-ch]
+  (-> (node [:input {:type "button", :class "btn", :value "BPM"}])
+      (with-click-handler new-event-ch)))
+
+(defn filt1-button [new-event-ch]
+  (-> (node [:input {:type "button", :class "btn", :value "FILT1"}])
+      (with-click-handler new-event-ch)))
+
+(defn filt2-button [new-event-ch]
+  (-> (node [:input {:type "button", :class "btn", :value "FILT2"}])
       (with-click-handler new-event-ch)))
 
 (defn with-click-handler [$button new-event-ch]
