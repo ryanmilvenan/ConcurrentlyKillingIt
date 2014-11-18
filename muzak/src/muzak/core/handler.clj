@@ -9,20 +9,14 @@
             [cheshire.core :as json]))
 
 ;Code from TournamentServer (in 7 Concurrency Models)- might be helpful
-(def players (atom ()))
+(def songs (atom ()))
 
-(defn list-players []
-  (response (json/encode @players)))
+(defn list-songs []
+  (response (json/encode @songs)))
 
-(defn create-player [player-name]
-  (swap! players conj player-name)
+(defn create-song [song-name]
+  (swap! songs conj song-name)
   (response "") 201)
-
-(defroutes app-routes
-  (GET "/players" [] (list-players))
-  (PUT "/players/:player-name" [player-name] (create-player player-name)))
-
-
 
 ; parse-int - Clojure code to parse a string as an integer
 (defn parse-int [s]
@@ -35,8 +29,8 @@
   (GET "/requestmap" request (str request))
 
 ;Also from TournamentServer
-   (GET "/players" [] (list-players))
-   (PUT "/players/:player-name" [player-name] (create-player player-name))
+   (GET "/songs" [] (list-songs))
+   (PUT "/songs/:song-name" [song-name] (create-song song-name))
 
 ;Some JSON experiments
   (GET "/widgets" [] (response [{:title "Sweet Emotion", :id "x2342134lkjaslk3"} {:name "Widget 2"}]))
