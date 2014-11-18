@@ -16,4 +16,5 @@
 (defn with-click-handler [$button new-event-ch]
   (d/listen! $button :click
     (fn [e]
-      (put! new-event-ch "EVENT HEARD!"))))
+      (def msg (hash-map :event "parse", :data '(1 2 3)))
+      (put! new-event-ch msg))))
