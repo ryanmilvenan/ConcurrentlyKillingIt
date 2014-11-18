@@ -10,7 +10,7 @@
    (send-signal-button new-event-ch)]))
 
 (defn send-signal-button [new-event-ch]
-  (-> (node [:input {:type "button", :size 50, :value "Click Me"}])
+  (-> (node [:input {:type "button", :size 50, :value "BPM"}])
       (with-click-handler new-event-ch)))
 
 (defn with-click-handler [$button new-event-ch]

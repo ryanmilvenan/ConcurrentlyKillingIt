@@ -38386,26 +38386,26 @@ goog.require("dommy.core");
 goog.require("dommy.core");
 goog.require("cljs.core.async");
 muzak.event_handlers.page_body = function page_body(_BANG_events, new_event_ch) {
-  var dom15613 = document.createElement("div");
-  dom15613.appendChild(dommy.template.__GT_node_like.call(null, muzak.event_handlers.send_signal_button.call(null, new_event_ch)));
-  return dom15613;
+  var dom14912 = document.createElement("div");
+  dom14912.appendChild(dommy.template.__GT_node_like.call(null, muzak.event_handlers.send_signal_button.call(null, new_event_ch)));
+  return dom14912;
 };
 muzak.event_handlers.send_signal_button = function send_signal_button(new_event_ch) {
   return muzak.event_handlers.with_click_handler.call(null, function() {
-    var dom15615 = document.createElement("input");
+    var dom14914 = document.createElement("input");
     if ("button") {
-      dom15615.setAttribute("type", "button");
+      dom14914.setAttribute("type", "button");
     } else {
     }
     if (50) {
-      dom15615.setAttribute("size", 50);
+      dom14914.setAttribute("size", 50);
     } else {
     }
-    if ("Click Me") {
-      dom15615.setAttribute("value", "Click Me");
+    if ("BPM") {
+      dom14914.setAttribute("value", "BPM");
     } else {
     }
-    return dom15615;
+    return dom14914;
   }(), new_event_ch);
 };
 muzak.event_handlers.with_click_handler = function with_click_handler($button, new_event_ch) {

@@ -11,12 +11,16 @@
    [:head
     [:title "Muzak"]
     (include-js "/js/main.js")
+    (include-js "/js/d3.min.js")
     (include-css "/css/style.css")]
    [:body [:div#content][:h1 "Hello"]]))
 
+
+;; Event Handler Functions
 (defn parse-event-handler [data]
   (prn data))
 
+;; Event listeners
 (defn ws-handler [{:keys [ws-channel] :as req}]
   (println "Opened connection from" (:remote-addr req))
   (go-loop []
@@ -32,7 +36,7 @@
       (cond
        (= event "parse") (parse-event-handler data)
        :else (prn "No event handler found"))
-      ;;(prn "Message received:" msg)
+
       (>! ws-channel (if error
                        (format "Error: '%s'." (pr-str msg))
                        {:received (format "You passed: '%s' at %s." (pr-str message) (java.util.Date.))}))
