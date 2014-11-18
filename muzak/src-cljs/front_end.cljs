@@ -1,5 +1,6 @@
 (ns muzak.front-end
   (:require [chord.client :refer [ws-ch]]
+            [muzak.event-handlers :refer [page-body]]
             [cljs.core.async :refer [chan <! >! put! close! timeout]]
             [dommy.core :as d]
             [cljs.reader :as edn]
@@ -55,6 +56,6 @@
                                  (send-msgs! ws-channel))]
 
                 ;; show the message component
-                ;;(d/replace-contents! (sel1 :#content) (message-component !msgs new-msg-ch))
+                (d/replace-contents! (sel1 :#content) (page-body !msgs new-msg-ch))
                 ))))))
 

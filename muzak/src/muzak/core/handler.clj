@@ -12,7 +12,7 @@
     [:title "Muzak"]
     (include-js "/js/main.js")
     (include-css "/css/style.css")]
-   [:body [:div#content]]))
+   [:body [:div#content][:h1 "Hello"]]))
 
 (defn ws-handler [{:keys [ws-channel] :as req}]
   (println "Opened connection from" (:remote-addr req))

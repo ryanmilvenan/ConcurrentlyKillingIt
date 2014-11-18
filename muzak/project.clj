@@ -14,7 +14,9 @@
 
                  [prismatic/dommy "0.1.2"]
 
-                 [jarohen/clidget "0.2.0"]]
+                 [jarohen/clidget "0.2.0"]
+
+                 [lein-light-nrepl "0.1.0"]]
 
   :plugins [[lein-pdo "0.1.1"]
             [jarohen/lein-frodo "0.3.2"]
@@ -31,6 +33,8 @@
   :source-paths ["src"]
 
   :resource-paths ["resources"]
+
+  :repl-options {:nrepl-middleware [lighttable.nrepl.handler/lighttable-ops]}
 
   :cljsbuild {
     :builds [{
