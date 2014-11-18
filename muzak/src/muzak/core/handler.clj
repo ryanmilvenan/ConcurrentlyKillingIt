@@ -5,7 +5,24 @@
             [compojure.handler :as handler]
             [ring.middleware.json :as middleware]
             [ring.util.response :refer [resource-response response]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [cheshire.core :as json]))
+
+;Code from TournamentServer (in 7 Concurrency Models)- might be helpful
+(def players (atom ()))
+
+(defn list-players []
+  (response (json/encode @players)))
+
+(defn create-player [player-name]
+  (swap! players conj player-name)
+  (response "") 201)
+
+(defroutes app-routes
+  (GET "/players" [] (list-players))
+  (PUT "/players/:player-name" [player-name] (create-player player-name)))
+
+
 
 ; parse-int - Clojure code to parse a string as an integer
 (defn parse-int [s]
@@ -17,7 +34,11 @@
   (GET "/info" {ip :remote-addr} (str "<h1>Hello client IP " ip "  </h1>"))
   (GET "/requestmap" request (str request))
 
-;Some JSON experiments  
+;Also from TournamentServer
+   (GET "/players" [] (list-players))
+   (PUT "/players/:player-name" [player-name] (create-player player-name))
+
+;Some JSON experiments
   (GET "/widgets" [] (response [{:title "Sweet Emotion", :id "x2342134lkjaslk3"} {:name "Widget 2"}]))
   (GET "/top10" [] (response (reduce assoc-songs {} (range 0 10))))
 
