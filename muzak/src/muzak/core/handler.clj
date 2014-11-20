@@ -27,12 +27,7 @@
 (def songs (atom ()))
 
 (defn list-songs []
-  ;;(response (json/encode @songs))
-  )
-
-(defn create-song [song-name]
-  (swap! songs conj song-name)
-  ;;(response "") 201
+  (json/encode @songs)
   )
 
 (defn hdf5-do-something []
