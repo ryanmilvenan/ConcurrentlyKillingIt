@@ -11,6 +11,8 @@
    (filt1-button new-event-ch)
    (filt2-button new-event-ch)]))
 
+(defn example-function [])
+
 (defn bpm-button [new-event-ch]
   (-> (node [:input {:type "button", :class "btn", :value "BPM"}])
       (with-click-handler new-event-ch)))
