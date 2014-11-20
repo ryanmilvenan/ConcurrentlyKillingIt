@@ -1,14 +1,28 @@
 (ns muzak.core.handler
-  (:use muzak.core.data-stubs)
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route]
-            [compojure.handler :as handler]
-            [ring.middleware.json :as middleware]
-            [ring.util.response :refer [resource-response response]]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [cheshire.core :as json]))
+  (:require [ring.util.response :refer [response]]
+            [compojure.core :refer [defroutes GET]]
+            [compojure.route :refer [resources]]
+            [chord.http-kit :refer [wrap-websocket-handler]]
+            [clojure.core.async :refer [<! >! put! close! go-loop]]
+            [hiccup.page :refer [html5 include-js include-css]]))
 
-;Code from TournamentServer (in 7 Concurrency Models)- might be helpful
+(defn page-frame []
+  (html5
+   [:head
+    [:title "Muzak"]
+    (include-js "/js/jquery-2.1.1.min.js")
+    (include-js "/js/bootstrap.min.js")
+    (include-js "/js/d3.min.js")
+    (include-js "/js/main.js")
+    (include-css "/css/bootstrap.min.css")
+    (include-css "/css/style.css")]
+   [:body [:div#content][:h1 "Hello"]]))
+
+
+;; Event Handler Functions
+(defn parse-event-handler [data]
+  (prn data))
+
 (def songs (atom ()))
 
 (defn list-songs []
@@ -18,35 +32,40 @@
   (swap! songs conj song-name)
   (response "") 201)
 
-; parse-int - Clojure code to parse a string as an integer
-(defn parse-int [s]
-  (Integer. (re-find  #"\d+" s )))
+(defn hdf5-do-something []
+  (def wconfig (. ch.systemsx.cisd.hdf5.HDF5Factory configure "attribute.h5"))
+  (def writer (.writer wconfig))
+  (.close writer))
+
+;; Event listeners
+(defn ws-handler [{:keys [ws-channel] :as req}]
+  (println "Opened connection from" (:remote-addr req))
+  (go-loop []
+    (when-let [{:keys [message error] :as msg} (<! ws-channel)]
+
+      ;; Retrieve event field of message
+      (def event (get (get msg :message) :event))
+
+      ;; Retrieve data field of message
+      (def data (get (get msg :message) :data))
+
+      ;; Perform callback associated with the event
+      (cond
+       (= event "parse") (parse-event-handler data)
+       :else (prn "No event handler found"))
+
+      (>! ws-channel (if error
+                       (format "Error: '%s'." (pr-str msg))
+                       {:received (format "You passed: '%s' at %s." (pr-str message) (java.util.Date.))}))
+      (recur))))
+
 
 (defroutes app-routes
-  (GET "/" [] "Hello World!")
-  (GET "/user/:id" [id] (str "<h1>Hello user " (+ 10 (parse-int id)) " (we added 10) </h1>"))
-  (GET "/info" {ip :remote-addr} (str "<h1>Hello client IP " ip "  </h1>"))
-  (GET "/requestmap" request (str request))
-
-;Also from TournamentServer
-   (GET "/songs" [] (list-songs))
-   (PUT "/songs/:song-name" [song-name] (create-song song-name))
-
-;Some JSON experiments
-  (GET "/widgets" [] (response [{:title "Sweet Emotion", :id "x2342134lkjaslk3"} {:name "Widget 2"}]))
-  (GET "/top10" [] (response (reduce assoc-songs {} (range 0 10))))
-
-;Some HDF5 stuff
-  (GET "/hdf5-writer" [] (response (hdf5-do-something)))
-
-  (route/not-found "Not Found"))
+  (GET "/" [] (response (page-frame)))
+  (GET "/ws" [] (-> ws-handler
+                    (wrap-websocket-handler {:format :json-kw})))
+  (resources "/"))
 
 (def app
-  (-> (handler/api app-routes)
-      (middleware/wrap-json-body)
-      (middleware/wrap-json-response)))
+  #'app-routes)
 
-
-;ORIG app definition (before adding JSON responses)
-;(def app
-;  (wrap-defaults app-routes site-defaults))

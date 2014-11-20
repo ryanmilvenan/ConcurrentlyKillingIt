@@ -1,0 +1,17 @@
+h1 {
+   width: 100%;
+   margin-top: 5em;
+   text-align: center;
+   color: #33CCFF;
+   font-size: 40pt;
+   font-family: sans-serif;
+}
+
+body {
+  font-family: 'Droid Sans', sans-serif;
+  background: url('../images/dark_grey.jpg');
+  color:#888;
+  padding:0;
+  margin:0;
+  font-size: 72.5%;
+}

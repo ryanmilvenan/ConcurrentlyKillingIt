@@ -1,24 +1,49 @@
 (defproject muzak "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "A visualizer for the Millon Song Dataset"
+  :url "https://github.com/ryanmilvenan/ConcurrentlyKillingIt"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [jarohen/chord "0.4.2"]
+
+                 [ring/ring-core "1.2.0"]
                  [compojure "1.2.0"]
-                 [ring/ring-defaults "0.1.2"]
-                 [ring/ring-json "0.2.0"]
-                 [enfocus "2.1.0"]
-                 [cheshire "5.0.1"]]
-  :resource-paths ["test/cisd-jhdf5.jar" "test/cisd-jhdf5-core.jar" "test/cisd-jhdf5-tools.jar"]
-  :plugins [[lein-ring "0.8.13"]
-            [lein-cljsbuild "1.0.3"]]
+
+                 [hiccup "1.0.4"]
+
+                 [org.clojure/core.async "0.1.301.0-deb34a-alpha"]
+                 [org.clojure/clojurescript "0.0-2268"]
+
+                 [prismatic/dommy "0.1.2"]
+
+                 [jarohen/clidget "0.2.0"]
+
+                 [lein-light-nrepl "0.1.0"]]
+
+  :plugins [[lein-pdo "0.1.1"]
+            [jarohen/lein-frodo "0.3.2"]
+            [lein-cljsbuild "1.0.3"]
+            [lein-shell "0.4.0"]]
+
+  :frodo/config-resource "muzak-server-config.edn"
+
+  :aliases {"start-server" ["do"
+                   ["pdo"
+                    ["cljsbuild" "auto"]
+                    "frodo"]]}
+
+  :source-paths ["src"]
+
+  :resource-paths ["resources"
+                   "resources/lib/cisd-jhdf5-core.jar"
+                   "resources/lib/cisd-jhdf5-tools.jar"
+                   "resources/lib/cisd-jhdf5.jar"]
+
+  :repl-options {:nrepl-middleware [lighttable.nrepl.handler/lighttable-ops]}
+
   :cljsbuild {
     :builds [{
-      :sourth-paths ["src-cljs"]
+      :source-paths ["src-cljs"]
       :compiler {
         :output-to "resources/public/js/main.js"
         :optimizations :whitespace
-        :pretty-print true}}]}
-  :ring {:handler muzak.core.handler/app}
-  :profiles
-  {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring-mock "0.1.5"]]}})
+        :pretty-print true}}]})
