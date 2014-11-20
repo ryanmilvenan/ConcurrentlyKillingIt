@@ -21,6 +21,9 @@
   (GET "/widgets" [] (response [{:title "Sweet Emotion", :id "x2342134lkjaslk3"} {:name "Widget 2"}]))
   (GET "/top10" [] (response (reduce assoc-songs {} (range 0 10))))
 
+;Some HDF5 stuff
+  (GET "/hdf5-writer" [] (response (hdf5-do-something)))
+
   (route/not-found "Not Found"))
 
 (def app

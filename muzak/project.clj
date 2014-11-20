@@ -7,6 +7,7 @@
                  [ring/ring-defaults "0.1.2"]
                  [ring/ring-json "0.2.0"]
                  [enfocus "2.1.0"]]
+  :resource-paths ["test/cisd-jhdf5.jar" "test/cisd-jhdf5-core.jar" "test/cisd-jhdf5-tools.jar"]
   :plugins [[lein-ring "0.8.13"]
             [lein-cljsbuild "1.0.3"]]
   :cljsbuild {
