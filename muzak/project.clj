@@ -32,7 +32,10 @@
 
   :source-paths ["src"]
 
-  :resource-paths ["resources"]
+  :resource-paths ["resources"
+                   "resources/lib/cisd-jhdf5-core.jar"
+                   "resources/lib/cisd-jhdf5-tools.jar"
+                   "resources/lib/cisd-jhdf5.jar"]
 
   :repl-options {:nrepl-middleware [lighttable.nrepl.handler/lighttable-ops]}
 

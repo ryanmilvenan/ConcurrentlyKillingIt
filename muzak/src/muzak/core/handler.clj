@@ -18,6 +18,11 @@
     (include-css "/css/style.css")]
    [:body [:div#content][:h1 "Hello"]]))
 
+(defn hdf5-do-something []
+  (def wconfig (. ch.systemsx.cisd.hdf5.HDF5Factory configure "attribute.h5"))
+  (def writer (.writer wconfig))
+  (.close writer))
+
 
 ;; Event Handler Functions
 (defn parse-event-handler [data]
