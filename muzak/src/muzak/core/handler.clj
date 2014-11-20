@@ -26,11 +26,13 @@
 (def songs (atom ()))
 
 (defn list-songs []
-  (response (json/encode @songs)))
+  ;;(response (json/encode @songs))
+  )
 
 (defn create-song [song-name]
   (swap! songs conj song-name)
-  (response "") 201)
+  ;;(response "") 201
+  )
 
 (defn hdf5-do-something []
   (def wconfig (. ch.systemsx.cisd.hdf5.HDF5Factory configure "attribute.h5"))
