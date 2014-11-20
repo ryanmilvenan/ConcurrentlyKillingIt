@@ -18,6 +18,8 @@ To start a web server for the application, run:
 
     lein start-server
 
+When the server has finished initializing, point your web browser to "localhost:3000" to view the web page.
+
 ## License
 
 Copyright © 2014 FIXME
