@@ -35,10 +35,35 @@
   ;;(response "") 201
   )
 
+; HDF5 Parsing Experiments
 (defn hdf5-do-something []
   (def wconfig (. ch.systemsx.cisd.hdf5.HDF5Factory configure "attribute.h5"))
   (def writer (.writer wconfig))
   (.close writer))
+  
+(defn hdf5-get-reader []
+  (. ch.systemsx.cisd.hdf5.HDF5Factory openForReading "resources/TRAXLZU12903D05F94.h5"))
+
+(defn hdf5-get-attribute []
+  (def hr (hdf5-get-reader))
+  (.getStringAttribute hr "/metadata/artist_terms" "TITLE"))
+  
+(defn hdf5-getStringHdf5Reader [hr]
+  (.string hr))
+  
+(defn hdf5-readStringArray [hr]
+  (def sr (hdf5-getStringHdf5Reader hr))
+  (.readArray sr "/metadata/similar_artists"))
+
+; NOTE: I believe that the Song_Title is part of a compound data set, needing a compound reader
+(defn hdf5-getCompoundHdf5Reader [hr]
+  (.compound hr))
+  
+;(defn hdf5-getCompoundValue [hr]
+;  (def cr (hdf5-getCompoundHdf5Reader hr))
+  ; FAIL - We don't know what type of Java object to ask for (ref: http://svncisd.ethz.ch/doc/hdf5/hdf5-13.06/
+;  )
+  
 
 ;; Event listeners
 (defn ws-handler [{:keys [ws-channel] :as req}]

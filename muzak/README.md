@@ -20,6 +20,17 @@ To start a web server for the application, run:
 
 When the server has finished initializing, point your web browser to "localhost:3000" to view the web page.
 
+## HDF5 Parsing
+After launching a repl, load the handler.clj with
+`(load-file "src/muzak/core/handler.clj")`
+and switch namespace
+`(ns muzak.core.handler)`
+then open the in-repository "resources\...h5"
+'(def hr (hdf5-get-reader))`
+confirm that you've got a HDF5Reader object
+`(type hr)`
+
+
 ## License
 
 Copyright © 2014 FIXME
