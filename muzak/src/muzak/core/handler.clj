@@ -15,8 +15,10 @@
     (include-js "/js/d3.min.js")
     (include-js "/js/main.js")
     (include-css "/css/bootstrap.min.css")
-    (include-css "/css/style.css")]
-   [:body [:div#content][:h1 "Hello"]]))
+    (include-css "/css/style.css")
+    (include-js "/src-cljs/event_handlers.cljs")]
+   [:body [:div#content]
+    [:h1 ""]]))
 
 
 ;; Event Handler Functions
