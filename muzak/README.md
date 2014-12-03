@@ -30,6 +30,13 @@ then open the in-repository "resources\...h5"
 confirm that you've got a HDF5Reader object
 `(type hr)`
 
+Or all at once
+'
+(load-file "src/muzak/core/handler.clj")
+(ns muzak.core.handler)
+(def hr (hdf5-get-reader))
+(type hr)
+'
 
 ## License
 
