@@ -44,7 +44,8 @@
 (defn hdf5-get-reader []
   (. ch.systemsx.cisd.hdf5.HDF5Factory openForReading "resources/TRAXLZU12903D05F94.h5"))
 
-(defn hdf5-get-compound [hr] [x]
+;David_Edit my compiler is yelling at arguments "[hr] [x]" - is this legal or typo?
+(defn hdf5-get-compound [hr, x]
   {(:attr x) (.getMemberInfo hr (:attr x))})
 
 ;builds a map of attribute-value pairs
