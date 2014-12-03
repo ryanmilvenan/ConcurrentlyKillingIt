@@ -63,6 +63,17 @@
 ; NOTE: I believe that the Song_Title is part of a compound data set, needing a compound reader
 (defn hdf5-getCompoundHdf5Reader [hr]
   (.compound hr))
+  
+; Read a CompoundDataSet into a Map and return the "title" value 
+(defn hdf5-getTitle [cr]
+  (def rec (.read cr "/metadata/songs" ch.systemsx.cisd.hdf5.HDF5CompoundDataMap))
+  (get rec "title"))
+  
+; Silly function to delete during last iteration - reads song title with no params
+(defn hdf5-magic []
+  (def hr (hdf5-get-reader))
+  (def cr (hdf5-getCompoundHdf5Reader hr))
+  (hdf5-getTitle cr))
 
 ;(defn hdf5-get-attr [x]
 ;  (def hr (hdf5-get-reader))
@@ -117,6 +128,7 @@
   (GET "/" [] (response (page-frame)))
   (GET "/ws" [] (-> ws-handler
                     (wrap-websocket-handler {:format :json-kw})))
+  (GET "/hdf5" [] (response (hdf5-magic )))
   (resources "/"))
 
 (def app
