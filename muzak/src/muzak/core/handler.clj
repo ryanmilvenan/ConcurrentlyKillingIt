@@ -35,64 +35,29 @@
   ;;(response "") 201
   )
 
-; HDF5 Parsing Experiments
-(defn hdf5-do-something []
-  (def wconfig (. ch.systemsx.cisd.hdf5.HDF5Factory configure "attribute.h5"))
-  (def writer (.writer wconfig))
-  (.close writer))
-
 (defn hdf5-get-reader []
   (. ch.systemsx.cisd.hdf5.HDF5Factory openForReading "resources/TRAXLZU12903D05F94.h5"))
-
-;David_Edit my compiler is yelling at arguments "[hr] [x]" - is this legal or typo?
-(defn hdf5-get-compound [hr, x]
-  {(:attr x) (.getMemberInfo hr (:attr x))})
-
-;builds a map of attribute-value pairs
-(defn hdf5-get-attribute [x]
-  (def hr (hdf5-get-reader))
-  {(:attr x) (.getStringAttribute hr (:path x) (:attr x))})
-
-(defn hdf5-getStringHdf5Reader [hr]
-  (.string hr))
-
-(defn hdf5-readStringArray [hr]
-  (def sr (hdf5-getStringHdf5Reader hr))
-  (.readArray sr "/metadata/similar_artists"))
 
 ; NOTE: I believe that the Song_Title is part of a compound data set, needing a compound reader
 (defn hdf5-getCompoundHdf5Reader [hr]
   (.compound hr))
-  
-; Read a CompoundDataSet into a Map and return the "title" value 
-(defn hdf5-getTitle [cr]
+
+;builds a map of attribute-value pairs
+(defn hdf5-get-attribute [cr, x]
   (def rec (.read cr "/metadata/songs" ch.systemsx.cisd.hdf5.HDF5CompoundDataMap))
-  (get rec "title"))
-  
-; Silly function to delete during last iteration - reads song title with no params
-(defn hdf5-magic []
+  {x (get rec x)})
+
+;test with testComp
+(defn get-song [x]
   (def hr (hdf5-get-reader))
   (def cr (hdf5-getCompoundHdf5Reader hr))
-  (hdf5-getTitle cr))
-
-;(defn hdf5-get-attr [x]
-;  (def hr (hdf5-get-reader))
-;  (.getStringAttribute hr (get x :path) (get x :attr)))
-
-;attempt at reading an arbitrary list of tags
-;(def x [{:path "/metadata/atrist_terms" :attr "TITLE"}])
-(defn get-song-details [x]
-  (def hr (hdf5-get-reader))
-  (mapcat (partial hdf5-get-compound hr) x))
-
-;test with testParams
-(defn get-song [x]
-  (mapcat hdf5-get-attribute x))
+  (map (partial hdf5-get-attribute cr) x))
 
 ;use to test get-song (does not work, needs compound reader)
-(def testParams [{:path "/metadata/songs" :attr "artist_name"} {:path "/metadata/songs" :attr "title"}])
+;(def testParams [{:path "/metadata/songs" :attr "artist_name"} {:path "/metadata/songs" :attr "title"}])
 ;use to test get-song (works)
-(def testOriginal [{:path "/metadata/artist_terms" :attr "title"}])
+;(def testOriginal [{:path "/metadata/artist_terms" :attr "title"}])
+(def testComp ["artist_name" "title"])
 
 
 ;(defn hdf5-getCompoundValue [hr]
@@ -128,9 +93,48 @@
   (GET "/" [] (response (page-frame)))
   (GET "/ws" [] (-> ws-handler
                     (wrap-websocket-handler {:format :json-kw})))
-  (GET "/hdf5" [] (response (hdf5-magic )))
+  (GET "/hdf5" [] (response (get-song testComp)))
   (resources "/"))
 
 (def app
   #'app-routes)
+
+; HDF5 Parsing Experiments
+;(defn hdf5-do-something []
+;  (def wconfig (. ch.systemsx.cisd.hdf5.HDF5Factory configure "attribute.h5"))
+;  (def writer (.writer wconfig))
+;  (.close writer))
+
+
+;David_Edit my compiler is yelling at arguments "[hr] [x]" - is this legal or typo?
+;(defn hdf5-get-compound [hr, x]
+;  {(:attr x) (.getMemberInfo hr (:attr x))})
+
+;(defn hdf5-getStringHdf5Reader [hr]
+;  (.string hr))
+
+;(defn hdf5-readStringArray [hr]
+;  (def sr (hdf5-getStringHdf5Reader hr))
+;  (.readArray sr "/metadata/similar_artists"))
+
+; Read a CompoundDataSet into a Map and return the "title" value
+;(defn hdf5-getTitle [cr]
+;  (def rec (.read cr "/metadata/songs" ch.systemsx.cisd.hdf5.HDF5CompoundDataMap))
+;  (get rec "title"))
+
+; Silly function to delete during last iteration - reads song title with no params
+;(defn hdf5-magic []
+;  (def hr (hdf5-get-reader))
+;  (def cr (hdf5-getCompoundHdf5Reader hr))
+;  (hdf5-getTitle cr))
+
+;(defn hdf5-get-attr [x]
+;  (def hr (hdf5-get-reader))
+;  (.getStringAttribute hr (get x :path) (get x :attr)))
+
+;attempt at reading an arbitrary list of tags
+;(def x [{:path "/metadata/atrist_terms" :attr "TITLE"}])
+;(defn get-song-details [x]
+;  (def hr (hdf5-get-reader))
+;  (mapcat (partial hdf5-get-compound hr) x))
 
