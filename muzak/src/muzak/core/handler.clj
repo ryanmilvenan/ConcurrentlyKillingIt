@@ -51,7 +51,7 @@
 (defn get-song [x]
   (def hr (hdf5-get-reader))
   (def cr (hdf5-getCompoundHdf5Reader hr))
-  (map (partial hdf5-get-attribute cr) x))
+  (into {} (map (partial hdf5-get-attribute cr) x)))
 
 ;use to test get-song (does not work, needs compound reader)
 ;(def testParams [{:path "/metadata/songs" :attr "artist_name"} {:path "/metadata/songs" :attr "title"}])
