@@ -1,7 +1,6 @@
 (ns muzak.event-handlers
   (:require [cljs.core.async :refer [put!]]
-            [dommy.core :as d]
-            [clidget.widget :refer-macros [defwidget]])
+            [dommy.core :as d])
   (:require-macros [dommy.macros :refer [node sel1]]))
 
 (enable-console-print!)
@@ -123,21 +122,11 @@
            (tempo-button new-event-ch)
            (dance-ability-button new-event-ch)]]]))
 
-(defwidget bubble-chart [{:keys [msgs]}]
-  (node
-   [:div
-    [:h3 "Messages from the server:"]
-    [:ul
-     (if (seq msgs)
-       (for [msg msgs]
-         [:li (pr-str msg)])
-       [:li "None yet."])]]))
 
 (defn page-component [!events new-event-ch]
   (node
    [:div
-    (page-body new-event-ch)
-    (bubble-chart {:!msgs !events})]))
+    (page-body new-event-ch)]))
 
 
 

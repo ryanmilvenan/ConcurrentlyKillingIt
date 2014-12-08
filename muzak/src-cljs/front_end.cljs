@@ -1,6 +1,7 @@
 (ns muzak.front-end
   (:require [chord.client :refer [ws-ch]]
             [muzak.event-handlers :refer [page-component update-state]]
+            [muzak.bubble-chart :refer [bubble-chart]]
             [cljs.core.async :refer [chan <! >! put! close! timeout]]
             [dommy.core :as d]
             [cljs.reader :as edn]
@@ -63,5 +64,7 @@
 
                 ;; show the message component
                 (d/replace-contents! (sel1 :#content) (page-component !msgs new-msg-ch))
+                (bubble-chart {:!msgs !msgs})
                 ))))))
+
 
