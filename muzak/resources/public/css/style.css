@@ -27,18 +27,24 @@ h1 {
 }
 
 #filters {
-  width: 58%;
   margin: 0 auto;
-  float: left;
+  display: inline-block;
 }
 
-.filter-button {
-  float: right;
+#search-button-container {
+  display: inline-block;
 }
-
 
 #search-button {
   margin-left: 1em;
+}
+
+.sort-bar {
+  display: inline-block;
+}
+
+a {
+  color: #BA55D3;
 }
 
 

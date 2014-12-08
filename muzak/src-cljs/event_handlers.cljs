@@ -2,7 +2,7 @@
   (:require [cljs.core.async :refer [put!]]
             [dommy.core :as d]
             [clidget.widget :refer-macros [defwidget]])
-  (:require-macros [dommy.macros :refer [node]]))
+  (:require-macros [dommy.macros :refer [node sel1]]))
 
 (enable-console-print!)
 
@@ -19,13 +19,25 @@
 
 ;; Click Handlers
 
+(def sort-type :popularity)
+(def sort-options (hash-map :popularity "#popularity", :hotness "#hotness", :tempo "#tempo", :dance "#dance"))
+(defn change-sort-type [new-sort-type]
+  (-> (sel1 (get sort-options sort-type))
+      (d/remove-class! :active))
+  (def sort-type new-sort-type)
+  (-> (sel1 (get sort-options sort-type))
+      (d/add-class! :active)))
+
 (defn with-click-handler-toggle-map [$button hash-key]
   (d/listen! $button :click
     (fn [e]
       (toggle-value hash-key)
       (println search-map))))
 
-;;(defn with-click-handler-toggle-sort [$li
+(defn with-click-handler-toggle-sort [$li new-sort-type]
+  (d/listen! $li :click
+    (fn [e]
+      (change-sort-type new-sort-type))))
 
 (defn with-click-handler-search [$button new-event-ch]
   (d/listen! $button :click
@@ -55,21 +67,23 @@
   (-> (node [:input {:type "button", :class "btn filter-button", :value "Pop"}])
       (with-click-handler-toggle-map :POP)))
 
+;; Sort Pills
+
 (defn popularity-button [new-event-ch]
-  (-> (node [:li[:a {:class "active", :html "Popularity"}]])
-      (with-click-handler-toggle-map :POPULARITY)))
+  (-> (node [:li{:class "active", :id "popularity"}[:a "Popularity"]])
+      (with-click-handler-toggle-sort :popularity)))
 
 (defn hottness-button [new-event-ch]
-  (-> (node [:li[:a {:class "btn", :html "Hottness"}]])
-      (with-click-handler-toggle-map :HOTNESS)))
+  (-> (node [:li{:id "hotness"}[:a "Hottness"]])
+      (with-click-handler-toggle-sort :hotness)))
 
 (defn tempo-button [new-event-ch]
-  (-> (node [:li[:a {:class "btn", :html "Tempo"}]])
-      (with-click-handler-toggle-map :TEMPO)))
+  (-> (node [:li{:id "tempo"}[:a "Tempo"]])
+      (with-click-handler-toggle-sort :tempo)))
 
 (defn dance-ability-button [new-event-ch]
-  (-> (node [:li[:a {:class "btn", :html "Dance-ability"}]])
-      (with-click-handler-toggle-map :DANCE)))
+  (-> (node [:li{:id "dance"}[:a "Dance-ability"]])
+      (with-click-handler-toggle-sort :dance)))
 
 
 ;; Search Button
@@ -90,7 +104,7 @@
     [:div
       [:h1#million "Million Song Search"]
       [:p "Select Filters:"]
-      [:div
+      [:div{:class "wrapper text-center"}
         [:div{:class "btn-grp",:id "filters", :data-toggle "buttons-checkbox"}
          (bpm-button new-event-ch)
          (classical-button new-event-ch)
@@ -102,8 +116,8 @@
       [:div#bubble-chart
         [:div#chart-body]]
       [:p "Sort By:"]
-        [:div
-         [:ul{:class "nav nav-pills"}
+        [:div{:class "wrapper text-center"}
+         [:ul{:class "nav nav-pills sort-bar"}
            (popularity-button new-event-ch)
            (hottness-button new-event-ch)
            (tempo-button new-event-ch)

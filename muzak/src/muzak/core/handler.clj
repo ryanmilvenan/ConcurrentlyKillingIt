@@ -8,9 +8,7 @@
 
 ;; Search maps
 (def search-maps-by-addr (hash-map))
-(def default-map {:POP false, :CLASSICAL false, :ROCK false,
-                  :GENRE false, :BPM false, :POPULARITY false,
-                  :HOTNESS false, :TEMPO false, :DANCE false})
+(def default-map {:BPM false, :POP false, :CLASSICAL false, :ROCK false})
 (defn initialize-state [ws-channel addr]
   (def search-maps-by-addr (assoc search-maps-by-addr addr default-map))
   (>!! ws-channel (hash-map :event "state" :data (get search-maps-by-addr addr))))

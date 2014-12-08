@@ -3,7 +3,7 @@
   :url "https://github.com/ryanmilvenan/ConcurrentlyKillingIt"
   :min-lein-version "2.0.0"
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [jarohen/chord "0.4.2"]
+                 [jarohen/chord "0.4.2" :exclusions [org.clojure/clojure]]
 
                  [ring/ring-core "1.2.0"]
                  [compojure "1.2.0"]
@@ -15,7 +15,7 @@
                  [prismatic/dommy "0.1.2"]
                  [net.drib/strokes "0.5.1"]
 
-                 [jarohen/clidget "0.2.0"]
+                 [jarohen/clidget "0.2.0" :exclusions [org.clojure/clojure]]
 
                  [lein-light-nrepl "0.1.0"]]
 
