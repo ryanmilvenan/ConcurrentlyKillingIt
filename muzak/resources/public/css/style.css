@@ -26,8 +26,19 @@ h1 {
   border-radius: 5px;
 }
 
-.toggles {
+#filters {
+  width: 58%;
   margin: 0 auto;
+  float: left;
+}
+
+.filter-button {
+  float: right;
+}
+
+
+#search-button {
+  margin-left: 1em;
 }
 
 

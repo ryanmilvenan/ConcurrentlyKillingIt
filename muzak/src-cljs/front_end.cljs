@@ -1,6 +1,6 @@
 (ns muzak.front-end
   (:require [chord.client :refer [ws-ch]]
-            [muzak.event-handlers :refer [page-body]]
+            [muzak.event-handlers :refer [page-component update-state]]
             [cljs.core.async :refer [chan <! >! put! close! timeout]]
             [dommy.core :as d]
             [cljs.reader :as edn]
@@ -19,7 +19,13 @@
   ;; every time we get a message from the server, add it to our list
   (go-loop []
     (when-let [msg (<! server-ch)]
-      (swap! !msgs add-msg msg)
+      (let [event (get-in msg [:message :event])
+            data (get-in msg [:message :data])]
+        (cond
+         (= event "state") (update-state data)
+         (= event "result") (swap! !msgs add-msg msg)
+         :else (swap! !msgs add-msg msg))
+      )
       (recur))))
 
 (defn send-msgs! [new-msg-ch server-ch]
@@ -56,6 +62,6 @@
                                  (send-msgs! ws-channel))]
 
                 ;; show the message component
-                (d/replace-contents! (sel1 :#content) (page-body !msgs new-msg-ch))
+                (d/replace-contents! (sel1 :#content) (page-component !msgs new-msg-ch))
                 ))))))
 

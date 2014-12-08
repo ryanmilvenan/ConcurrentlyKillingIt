@@ -3,9 +3,23 @@
             [compojure.core :refer [defroutes GET]]
             [compojure.route :refer [resources]]
             [chord.http-kit :refer [wrap-websocket-handler]]
-            [clojure.core.async :refer [<! >! put! close! go-loop]]
+            [clojure.core.async :refer [<! >! >!! put! close! go-loop]]
             [hiccup.page :refer [html5 include-js include-css]]))
 
+;; Search maps
+(def search-maps-by-addr (hash-map))
+(def default-map {:POP false, :CLASSICAL false, :ROCK false,
+                  :GENRE false, :BPM false, :POPULARITY false,
+                  :HOTNESS false, :TEMPO false, :DANCE false})
+(defn initialize-state [ws-channel addr]
+  (def search-maps-by-addr (assoc search-maps-by-addr addr default-map))
+  (>!! ws-channel (hash-map :event "state" :data (get search-maps-by-addr addr))))
+
+
+(defn update-search-map [addr new-state]
+  (def search-maps-by-addr (assoc search-maps-by-addr addr new-state)))
+
+;; Page Information
 (defn page-frame []
   (html5
    [:head
@@ -16,37 +30,41 @@
     (include-js "/js/main.js")
     (include-css "/css/bootstrap.min.css")
     (include-css "http://fonts.googleapis.com/css?family=Lobster")
-    (include-css "/css/style.css")
-    (include-js "/src-cljs/event_handlers.cljs")]
+    (include-css "/css/style.css")]
    [:body [:div#content]]))
 
 
 ;; Event Handler Functions
-(defn parse-event-handler [data]
-  (prn data))
+(defn parse-event-handler [ws-channel addr data error]
+  (update-search-map addr data)
+  (>!! ws-channel (if error
+                    (format "Error: '%s'." (pr-str data))
+                    (hash-map :event "result" :data data))))
+
 
 ;; Event listeners
 (defn ws-handler [{:keys [ws-channel] :as req}]
   (println "Opened connection from" (:remote-addr req))
+  (initialize-state ws-channel (:remote-addr req))
   (go-loop []
-    (when-let [{:keys [message error] :as msg} (<! ws-channel)]
+      (when-let [{:keys [message error] :as msg} (<! ws-channel)]
 
-      ;; Retrieve event field of message
-      (def event (get (get msg :message) :event))
+          (let
+            [;; Retrieve address of requester
+             addr (:remote-addr req)
 
-      ;; Retrieve data field of message
-      (def data (get (get msg :message) :data))
+             ;; Retrieve event field of message
+             event (get-in msg [:message :event])
 
-      ;; Perform callback associated with the event
-      (cond
-       (= event "parse") (parse-event-handler data)
-       :else (prn "No event handler found"))
+             ;; Retrieve data field of message
+             data (get-in msg [:message :data])]
+          (prn data)
+          ;; Perform callback associated with the event
+          (cond
+           (= event "parse") (parse-event-handler ws-channel addr data error)
+           :else (prn "No event handler found"))))
 
-      (>! ws-channel (if error
-                       (format "Error: '%s'." (pr-str msg))
-                       {:received (format "You passed: '%s' at %s." (pr-str message) (java.util.Date.))}))
-      (recur))))
-
+      (recur)))
 
 
 (defroutes app-routes
