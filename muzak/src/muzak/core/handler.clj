@@ -15,10 +15,10 @@
     (include-js "/js/d3.min.js")
     (include-js "/js/main.js")
     (include-css "/css/bootstrap.min.css")
+    (include-css "http://fonts.googleapis.com/css?family=Lobster")
     (include-css "/css/style.css")
     (include-js "/src-cljs/event_handlers.cljs")]
-   [:body [:div#content]
-    [:h1 ""]]))
+   [:body [:div#content]]))
 
 
 ;; Event Handler Functions

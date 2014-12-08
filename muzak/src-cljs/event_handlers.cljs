@@ -6,21 +6,26 @@
 
 (defn page-body [!events new-event-ch]
   (node
-    [:div{:class "btn-grp", :data-toggle "buttons-checkbox"}
-      [:h1 "Million Song Search"]
+    [:div
+      [:h1#million "Million Song Search"]
       [:p "Select Filters:"]
-      [:p  (bpm-button new-event-ch)
+      [:div{:class "wrapper text-center"}
+        [:div{:class "btn-grp", :data-toggle "buttons-checkbox"}
+         (bpm-button new-event-ch)
          (filt1-button new-event-ch)
          (filt2-button new-event-ch)
-         (pop-button new-event-ch)]
-      [:h2 "Bubble Chart"]
+         (pop-button new-event-ch)]]
+      [:div#bubble-chart
+        [:h1 "testing"]]
       [:p "Sort By:"]
-      [:p (popularity-button new-event-ch)
+      [:div{:class "wrapper text-center"}
+        [:div{:class "btn-grp", :data-toggle "buttons-checkbox"}
+         (popularity-button new-event-ch)
          (hottness-button new-event-ch)
          (tempo-button new-event-ch)
-         (dance-ability-button new-event-ch)]]))
+         (dance-ability-button new-event-ch)]]]))
 
-(defn example-function [])
+(def search-object {:POP false, :CLASSICAL false, :ROCK false, :GENRE false})
 
 (defn bpm-button [new-event-ch]
   (-> (node [:input {:type "button", :class "btn", :value "BPM"}])
