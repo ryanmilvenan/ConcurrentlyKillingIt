@@ -41305,49 +41305,49 @@ goog.require("strokes");
 strokes.bootstrap.call(null);
 muzak.bubble_chart.bubble_chart = function() {
   var bubble_chart__delegate = function(system__10515__auto__, params__10516__auto__) {
-    return clidget.widget.updated_widget.call(null, cljs.core.assoc.call(null, system__10515__auto__, new cljs.core.Keyword("clidget", "widget-type", "clidget/widget-type", 981736725), new cljs.core.Symbol(null, "widget17086", "widget17086", -2084976697, null)), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "val-key", "val-key", 1135580325), new cljs.core.Keyword(null, "msgs", "msgs", -1176489773), 
+    return clidget.widget.updated_widget.call(null, cljs.core.assoc.call(null, system__10515__auto__, new cljs.core.Keyword("clidget", "widget-type", "clidget/widget-type", 981736725), new cljs.core.Symbol(null, "widget17097", "widget17097", 29231527, null)), new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.PersistentArrayMap(null, 2, [new cljs.core.Keyword(null, "val-key", "val-key", 1135580325), new cljs.core.Keyword(null, "msgs", "msgs", -1176489773), 
     new cljs.core.Keyword(null, "atom-key", "atom-key", 329783458), new cljs.core.Keyword(null, "!msgs", "!msgs", 1863868512)], null)], null), cljs.core.PersistentArrayMap.EMPTY, function(resolved_state__10517__auto__) {
-      var map__17089 = resolved_state__10517__auto__;
-      var map__17089__$1 = cljs.core.seq_QMARK_.call(null, map__17089) ? cljs.core.apply.call(null, cljs.core.hash_map, map__17089) : map__17089;
-      var msgs = cljs.core.get.call(null, map__17089__$1, new cljs.core.Keyword(null, "msgs", "msgs", -1176489773));
-      var vec__17090 = params__10516__auto__;
+      var map__17100 = resolved_state__10517__auto__;
+      var map__17100__$1 = cljs.core.seq_QMARK_.call(null, map__17100) ? cljs.core.apply.call(null, cljs.core.hash_map, map__17100) : map__17100;
+      var msgs = cljs.core.get.call(null, map__17100__$1, new cljs.core.Keyword(null, "msgs", "msgs", -1176489773));
+      var vec__17101 = params__10516__auto__;
       muzak.bubble_chart.diameter = 960;
       muzak.bubble_chart.formatfn = strokes.d3.format(",d");
       muzak.bubble_chart.pack = strokes.d3.layout.pack().size(new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [muzak.bubble_chart.diameter - 4, muzak.bubble_chart.diameter - 4], null)).value(new cljs.core.Keyword(null, "size", "size", 1098693007));
       muzak.bubble_chart.svg = strokes.d3.select("#chart-body").append("svg").attr("width", muzak.bubble_chart.diameter).attr("height", muzak.bubble_chart.diameter).append("g").attr("transform", "translate(2,2)");
-      strokes.fetch_edn.call(null, "flare.edn", function(map__17089, map__17089__$1, msgs, vec__17090) {
+      strokes.fetch_edn.call(null, "flare.edn", function(map__17100, map__17100__$1, msgs, vec__17101) {
         return function(error, root) {
-          var node = muzak.bubble_chart.svg.datum(root).selectAll(".node").data(mrhyde.typepatcher.repersist.call(null, muzak.bubble_chart.pack.nodes, new cljs.core.Keyword(null, "skip", "skip", 602715391), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "children", "children", -940561982), new cljs.core.Keyword(null, "parent", "parent", -878878779)], null))).enter().append("g").attr("class", function(map__17089, map__17089__$1, msgs, 
-          vec__17090) {
-            return function(p1__17081_SHARP_) {
-              if (cljs.core.contains_QMARK_.call(null, p1__17081_SHARP_, new cljs.core.Keyword(null, "children", "children", -940561982))) {
+          var node = muzak.bubble_chart.svg.datum(root).selectAll(".node").data(mrhyde.typepatcher.repersist.call(null, muzak.bubble_chart.pack.nodes, new cljs.core.Keyword(null, "skip", "skip", 602715391), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "children", "children", -940561982), new cljs.core.Keyword(null, "parent", "parent", -878878779)], null))).enter().append("g").attr("class", function(map__17100, map__17100__$1, msgs, 
+          vec__17101) {
+            return function(p1__17092_SHARP_) {
+              if (cljs.core.contains_QMARK_.call(null, p1__17092_SHARP_, new cljs.core.Keyword(null, "children", "children", -940561982))) {
                 return "node";
               } else {
                 return "leaf node";
               }
             };
-          }(map__17089, map__17089__$1, msgs, vec__17090)).attr("transform", function(map__17089, map__17089__$1, msgs, vec__17090) {
-            return function(p1__17082_SHARP_) {
-              return "translate(" + cljs.core.str.cljs$core$IFn$_invoke$arity$1((new cljs.core.Keyword(null, "x", "x", 2099068185)).cljs$core$IFn$_invoke$arity$1(p1__17082_SHARP_)) + "," + cljs.core.str.cljs$core$IFn$_invoke$arity$1((new cljs.core.Keyword(null, "y", "y", -1757859776)).cljs$core$IFn$_invoke$arity$1(p1__17082_SHARP_)) + ")";
+          }(map__17100, map__17100__$1, msgs, vec__17101)).attr("transform", function(map__17100, map__17100__$1, msgs, vec__17101) {
+            return function(p1__17093_SHARP_) {
+              return "translate(" + cljs.core.str.cljs$core$IFn$_invoke$arity$1((new cljs.core.Keyword(null, "x", "x", 2099068185)).cljs$core$IFn$_invoke$arity$1(p1__17093_SHARP_)) + "," + cljs.core.str.cljs$core$IFn$_invoke$arity$1((new cljs.core.Keyword(null, "y", "y", -1757859776)).cljs$core$IFn$_invoke$arity$1(p1__17093_SHARP_)) + ")";
             };
-          }(map__17089, map__17089__$1, msgs, vec__17090));
-          node.append("title").text(function(node, map__17089, map__17089__$1, msgs, vec__17090) {
-            return function(p1__17083_SHARP_) {
-              return "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1((new cljs.core.Keyword(null, "name", "name", 1843675177)).cljs$core$IFn$_invoke$arity$1(p1__17083_SHARP_)) + cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.contains_QMARK_.call(null, p1__17083_SHARP_, new cljs.core.Keyword(null, "children", "children", -940561982)) ? "" : muzak.bubble_chart.formatfn.call(null, (new cljs.core.Keyword(null, "size", "size", 1098693007)).cljs$core$IFn$_invoke$arity$1(p1__17083_SHARP_)));
+          }(map__17100, map__17100__$1, msgs, vec__17101));
+          node.append("title").text(function(node, map__17100, map__17100__$1, msgs, vec__17101) {
+            return function(p1__17094_SHARP_) {
+              return "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1((new cljs.core.Keyword(null, "name", "name", 1843675177)).cljs$core$IFn$_invoke$arity$1(p1__17094_SHARP_)) + cljs.core.str.cljs$core$IFn$_invoke$arity$1(cljs.core.contains_QMARK_.call(null, p1__17094_SHARP_, new cljs.core.Keyword(null, "children", "children", -940561982)) ? "" : muzak.bubble_chart.formatfn.call(null, (new cljs.core.Keyword(null, "size", "size", 1098693007)).cljs$core$IFn$_invoke$arity$1(p1__17094_SHARP_)));
             };
-          }(node, map__17089, map__17089__$1, msgs, vec__17090));
-          node.append("circle").attr("r", new cljs.core.Keyword(null, "r", "r", -471384190)).style("fill", "#3182bd");
-          return node.filter(function(node, map__17089, map__17089__$1, msgs, vec__17090) {
-            return function(p1__17084_SHARP_) {
-              return cljs.core.not.call(null, (new cljs.core.Keyword(null, "children", "children", -940561982)).cljs$core$IFn$_invoke$arity$1(p1__17084_SHARP_));
+          }(node, map__17100, map__17100__$1, msgs, vec__17101));
+          node.append("circle").attr("r", new cljs.core.Keyword(null, "r", "r", -471384190));
+          return node.filter(function(node, map__17100, map__17100__$1, msgs, vec__17101) {
+            return function(p1__17095_SHARP_) {
+              return cljs.core.not.call(null, (new cljs.core.Keyword(null, "children", "children", -940561982)).cljs$core$IFn$_invoke$arity$1(p1__17095_SHARP_));
             };
-          }(node, map__17089, map__17089__$1, msgs, vec__17090)).append("text").attr("dy", ".3em").style("text-anchor", "middle").text(function(node, map__17089, map__17089__$1, msgs, vec__17090) {
-            return function(p1__17085_SHARP_) {
-              return cljs.core.subs.call(null, (new cljs.core.Keyword(null, "name", "name", 1843675177)).cljs$core$IFn$_invoke$arity$1(p1__17085_SHARP_), 0, (new cljs.core.Keyword(null, "r", "r", -471384190)).cljs$core$IFn$_invoke$arity$1(p1__17085_SHARP_) / 3);
+          }(node, map__17100, map__17100__$1, msgs, vec__17101)).append("text").attr("dy", ".3em").style("text-anchor", "middle").text(function(node, map__17100, map__17100__$1, msgs, vec__17101) {
+            return function(p1__17096_SHARP_) {
+              return cljs.core.subs.call(null, (new cljs.core.Keyword(null, "name", "name", 1843675177)).cljs$core$IFn$_invoke$arity$1(p1__17096_SHARP_), 0, (new cljs.core.Keyword(null, "r", "r", -471384190)).cljs$core$IFn$_invoke$arity$1(p1__17096_SHARP_) / 3);
             };
-          }(node, map__17089, map__17089__$1, msgs, vec__17090));
+          }(node, map__17100, map__17100__$1, msgs, vec__17101));
         };
-      }(map__17089, map__17089__$1, msgs, vec__17090));
+      }(map__17100, map__17100__$1, msgs, vec__17101));
       return strokes.d3.select(self.frameElement).style("height", "" + cljs.core.str.cljs$core$IFn$_invoke$arity$1(muzak.bubble_chart.diameter) + "px");
     });
   };
@@ -41359,9 +41359,9 @@ muzak.bubble_chart.bubble_chart = function() {
     return bubble_chart__delegate.call(this, system__10515__auto__, params__10516__auto__);
   };
   bubble_chart.cljs$lang$maxFixedArity = 1;
-  bubble_chart.cljs$lang$applyTo = function(arglist__17091) {
-    var system__10515__auto__ = cljs.core.first(arglist__17091);
-    var params__10516__auto__ = cljs.core.rest(arglist__17091);
+  bubble_chart.cljs$lang$applyTo = function(arglist__17102) {
+    var system__10515__auto__ = cljs.core.first(arglist__17102);
+    var params__10516__auto__ = cljs.core.rest(arglist__17102);
     return bubble_chart__delegate(system__10515__auto__, params__10516__auto__);
   };
   bubble_chart.cljs$core$IFn$_invoke$arity$variadic = bubble_chart__delegate;

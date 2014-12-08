@@ -32,7 +32,8 @@
 
       (.. node (append "circle")
         (attr "r" :r)
-        (style "fill" "#3182bd"))
+        ;;***********NEEDS THIS PROPERTY(style "fill" "#3182bd")
+          )
 
       (.. node (filter #(not (:children %))) (append "text")
         (attr "dy" ".3em")
