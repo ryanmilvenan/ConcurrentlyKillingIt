@@ -33,7 +33,15 @@
 
   :source-paths ["src"]
 
-  :resource-paths ["resources"]
+  :resource-paths ["resources"
+                   ;"resources/lib/cisd-args4j.jar"
+                   ;"resources/lib/cisd-base.jar"
+                   "resources/lib/cisd-jhdf5-core.jar"
+                   "resources/lib/cisd-jhdf5-tools.jar"
+                   "resources/lib/cisd-jhdf5.jar"
+                   ;"resources/lib/commons-io.jar"
+                   ;"resources/lib/commons-lang.jar"
+                   "resources/lib/nativejar/hdf5-windows-intel.jar"]
 
   :repl-options {:nrepl-middleware [lighttable.nrepl.handler/lighttable-ops]}
 

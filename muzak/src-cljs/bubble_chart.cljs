@@ -20,7 +20,7 @@
   (append "g")
     (attr "transform" "translate(2,2)")))
 
-    (strokes/fetch-edn "flare.edn" (fn [error, root]
+    (strokes/fetch-edn "muzak.edn" (fn [error, root]
       (let [node (.. svg (datum root) (selectAll ".node")
                     (data (repersist (.-nodes pack) :skip [:children :parent]))
                   (enter) (append "g")
