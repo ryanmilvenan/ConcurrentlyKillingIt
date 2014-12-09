@@ -1,281 +1,281 @@
-{:name "flare",
+{:fill "#3182bd" :name "flare",
  :children
- [{:name "analytics",
+ [{:fill "blue" :name "analytics",
    :children
-   [{:name "cluster",
+   [{:fill "blue" :name "cluster",
      :children
-     [{:name "AgglomerativeCluster", :size 3938}
-      {:name "CommunityStructure", :size 3812}
-      {:name "HierarchicalCluster", :size 6714}
-      {:name "MergeEdge", :size 743}]}
-    {:name "graph",
+     [{:fill "blue" :name "AgglomerativeCluster", :size 3938}
+      {:fill "blue" :name "CommunityStructure", :size 3812}
+      {:fill "blue" :name "HierarchicalCluster", :size 6714}
+      {:fill "blue" :name "MergeEdge", :size 743}]}
+    {:fill "blue" :name "graph",
      :children
-     [{:name "BetweennessCentrality", :size 3534}
-      {:name "LinkDistance", :size 5731}
-      {:name "MaxFlowMinCut", :size 7840}
-      {:name "ShortestPaths", :size 5914}
-      {:name "SpanningTree", :size 3416}]}
-    {:name "optimization",
-     :children [{:name "AspectRatioBanker", :size 7074}]}]}
-  {:name "animate",
+     [{:fill "blue" :name "BetweennessCentrality", :size 3534}
+      {:fill "blue" :name "LinkDistance", :size 5731}
+      {:fill "blue" :name "MaxFlowMinCut", :size 7840}
+      {:fill "blue" :name "ShortestPaths", :size 5914}
+      {:fill "blue" :name "SpanningTree", :size 3416}]}
+    {:fill "blue" :name "optimization",
+     :children [{:fill "blue" :name "AspectRatioBanker", :size 7074}]}]}
+  {:fill "blue" :name "animate",
    :children
-   [{:name "Easing", :size 17010}
-    {:name "FunctionSequence", :size 5842}
-    {:name "interpolate",
+   [{:fill "blue" :name "Easing", :size 17010}
+    {:fill "blue" :name "FunctionSequence", :size 5842}
+    {:fill "blue" :name "interpolate",
      :children
-     [{:name "ArrayInterpolator", :size 1983}
-      {:name "ColorInterpolator", :size 2047}
-      {:name "DateInterpolator", :size 1375}
-      {:name "Interpolator", :size 8746}
-      {:name "MatrixInterpolator", :size 2202}
-      {:name "NumberInterpolator", :size 1382}
-      {:name "ObjectInterpolator", :size 1629}
-      {:name "PointInterpolator", :size 1675}
-      {:name "RectangleInterpolator", :size 2042}]}
-    {:name "ISchedulable", :size 1041}
-    {:name "Parallel", :size 5176}
-    {:name "Pause", :size 449}
-    {:name "Scheduler", :size 5593}
-    {:name "Sequence", :size 5534}
-    {:name "Transition", :size 9201}
-    {:name "Transitioner", :size 19975}
-    {:name "TransitionEvent", :size 1116}
-    {:name "Tween", :size 6006}]}
-  {:name "data",
+     [{:fill "blue" :name "ArrayInterpolator", :size 1983}
+      {:fill "blue" :name "ColorInterpolator", :size 2047}
+      {:fill "blue" :name "DateInterpolator", :size 1375}
+      {:fill "blue" :name "Interpolator", :size 8746}
+      {:fill "blue" :name "MatrixInterpolator", :size 2202}
+      {:fill "blue" :name "NumberInterpolator", :size 1382}
+      {:fill "blue" :name "ObjectInterpolator", :size 1629}
+      {:fill "blue" :name "PointInterpolator", :size 1675}
+      {:fill "blue" :name "RectangleInterpolator", :size 2042}]}
+    {:fill "blue" :name "ISchedulable", :size 1041}
+    {:fill "blue" :name "Parallel", :size 5176}
+    {:fill "blue" :name "Pause", :size 449}
+    {:fill "blue" :name "Scheduler", :size 5593}
+    {:fill "blue" :name "Sequence", :size 5534}
+    {:fill "blue" :name "Transition", :size 9201}
+    {:fill "blue" :name "Transitioner", :size 19975}
+    {:fill "blue" :name "TransitionEvent", :size 1116}
+    {:fill "blue" :name "Tween", :size 6006}]}
+  {:fill "blue" :name "data",
    :children
-   [{:name "converters",
+   [{:fill "blue" :name "converters",
      :children
-     [{:name "Converters", :size 721}
-      {:name "DelimitedTextConverter", :size 4294}
-      {:name "GraphMLConverter", :size 9800}
-      {:name "IDataConverter", :size 1314}
-      {:name "JSONConverter", :size 2220}]}
-    {:name "DataField", :size 1759}
-    {:name "DataSchema", :size 2165}
-    {:name "DataSet", :size 586}
-    {:name "DataSource", :size 3331}
-    {:name "DataTable", :size 772}
-    {:name "DataUtil", :size 3322}]}
-  {:name "display",
+     [{:fill "blue" :name "Converters", :size 721}
+      {:fill "blue" :name "DelimitedTextConverter", :size 4294}
+      {:fill "blue" :name "GraphMLConverter", :size 9800}
+      {:fill "blue" :name "IDataConverter", :size 1314}
+      {:fill "blue" :name "JSONConverter", :size 2220}]}
+    {:fill "blue" :name "DataField", :size 1759}
+    {:fill "blue" :name "DataSchema", :size 2165}
+    {:fill "blue" :name "DataSet", :size 586}
+    {:fill "blue" :name "DataSource", :size 3331}
+    {:fill "blue" :name "DataTable", :size 772}
+    {:fill "blue" :name "DataUtil", :size 3322}]}
+  {:fill "blue" :name "display",
    :children
-   [{:name "DirtySprite", :size 8833}
-    {:name "LineSprite", :size 1732}
-    {:name "RectSprite", :size 3623}
-    {:name "TextSprite", :size 10066}]}
-  {:name "flex", :children [{:name "FlareVis", :size 4116}]}
-  {:name "physics",
+   [{:fill "blue" :name "DirtySprite", :size 8833}
+    {:fill "blue" :name "LineSprite", :size 1732}
+    {:fill "blue" :name "RectSprite", :size 3623}
+    {:fill "blue" :name "TextSprite", :size 10066}]}
+  {:fill "blue" :name "flex", :children [{:fill "blue" :name "FlareVis", :size 4116}]}
+  {:fill "blue" :name "physics",
    :children
-   [{:name "DragForce", :size 1082}
-    {:name "GravityForce", :size 1336}
-    {:name "IForce", :size 319}
-    {:name "NBodyForce", :size 10498}
-    {:name "Particle", :size 2822}
-    {:name "Simulation", :size 9983}
-    {:name "Spring", :size 2213}
-    {:name "SpringForce", :size 1681}]}
-  {:name "query",
+   [{:fill "blue" :name "DragForce", :size 1082}
+    {:fill "blue" :name "GravityForce", :size 1336}
+    {:fill "blue" :name "IForce", :size 319}
+    {:fill "blue" :name "NBodyForce", :size 10498}
+    {:fill "blue" :name "Particle", :size 2822}
+    {:fill "blue" :name "Simulation", :size 9983}
+    {:fill "blue" :name "Spring", :size 2213}
+    {:fill "blue" :name "SpringForce", :size 1681}]}
+  {:fill "blue" :name "query",
    :children
-   [{:name "AggregateExpression", :size 1616}
-    {:name "And", :size 1027}
-    {:name "Arithmetic", :size 3891}
-    {:name "Average", :size 891}
-    {:name "BinaryExpression", :size 2893}
-    {:name "Comparison", :size 5103}
-    {:name "CompositeExpression", :size 3677}
-    {:name "Count", :size 781}
-    {:name "DateUtil", :size 4141}
-    {:name "Distinct", :size 933}
-    {:name "Expression", :size 5130}
-    {:name "ExpressionIterator", :size 3617}
-    {:name "Fn", :size 3240}
-    {:name "If", :size 2732}
-    {:name "IsA", :size 2039}
-    {:name "Literal", :size 1214}
-    {:name "Match", :size 3748}
-    {:name "Maximum", :size 843}
-    {:name "methods",
+   [{:fill "blue" :name "AggregateExpression", :size 1616}
+    {:fill "blue" :name "And", :size 1027}
+    {:fill "blue" :name "Arithmetic", :size 3891}
+    {:fill "blue" :name "Average", :size 891}
+    {:fill "blue" :name "BinaryExpression", :size 2893}
+    {:fill "blue" :name "Comparison", :size 5103}
+    {:fill "blue" :name "CompositeExpression", :size 3677}
+    {:fill "blue" :name "Count", :size 781}
+    {:fill "blue" :name "DateUtil", :size 4141}
+    {:fill "blue" :name "Distinct", :size 933}
+    {:fill "blue" :name "Expression", :size 5130}
+    {:fill "blue" :name "ExpressionIterator", :size 3617}
+    {:fill "blue" :name "Fn", :size 3240}
+    {:fill "blue" :name "If", :size 2732}
+    {:fill "blue" :name "IsA", :size 2039}
+    {:fill "blue" :name "Literal", :size 1214}
+    {:fill "blue" :name "Match", :size 3748}
+    {:fill "blue" :name "Maximum", :size 843}
+    {:fill "blue" :name "methods",
      :children
-     [{:name "add", :size 593}
-      {:name "and", :size 330}
-      {:name "average", :size 287}
-      {:name "count", :size 277}
-      {:name "distinct", :size 292}
-      {:name "div", :size 595}
-      {:name "eq", :size 594}
-      {:name "fn", :size 460}
-      {:name "gt", :size 603}
-      {:name "gte", :size 625}
-      {:name "iff", :size 748}
-      {:name "isa", :size 461}
-      {:name "lt", :size 597}
-      {:name "lte", :size 619}
-      {:name "max", :size 283}
-      {:name "min", :size 283}
-      {:name "mod", :size 591}
-      {:name "mul", :size 603}
-      {:name "neq", :size 599}
-      {:name "not", :size 386}
-      {:name "or", :size 323}
-      {:name "orderby", :size 307}
-      {:name "range", :size 772}
-      {:name "select", :size 296}
-      {:name "stddev", :size 363}
-      {:name "sub", :size 600}
-      {:name "sum", :size 280}
-      {:name "update", :size 307}
-      {:name "variance", :size 335}
-      {:name "where", :size 299}
-      {:name "xor", :size 354}
-      {:name "_", :size 264}]}
-    {:name "Minimum", :size 843}
-    {:name "Not", :size 1554}
-    {:name "Or", :size 970}
-    {:name "Query", :size 13896}
-    {:name "Range", :size 1594}
-    {:name "StringUtil", :size 4130}
-    {:name "Sum", :size 791}
-    {:name "Variable", :size 1124}
-    {:name "Variance", :size 1876}
-    {:name "Xor", :size 1101}]}
-  {:name "scale",
+     [{:fill "blue" :name "add", :size 593}
+      {:fill "blue" :name "and", :size 330}
+      {:fill "blue" :name "average", :size 287}
+      {:fill "blue" :name "count", :size 277}
+      {:fill "blue" :name "distinct", :size 292}
+      {:fill "blue" :name "div", :size 595}
+      {:fill "blue" :name "eq", :size 594}
+      {:fill "blue" :name "fn", :size 460}
+      {:fill "blue" :name "gt", :size 603}
+      {:fill "blue" :name "gte", :size 625}
+      {:fill "blue" :name "iff", :size 748}
+      {:fill "blue" :name "isa", :size 461}
+      {:fill "blue" :name "lt", :size 597}
+      {:fill "blue" :name "lte", :size 619}
+      {:fill "blue" :name "max", :size 283}
+      {:fill "blue" :name "min", :size 283}
+      {:fill "blue" :name "mod", :size 591}
+      {:fill "blue" :name "mul", :size 603}
+      {:fill "blue" :name "neq", :size 599}
+      {:fill "blue" :name "not", :size 386}
+      {:fill "blue" :name "or", :size 323}
+      {:fill "blue" :name "orderby", :size 307}
+      {:fill "blue" :name "range", :size 772}
+      {:fill "blue" :name "select", :size 296}
+      {:fill "blue" :name "stddev", :size 363}
+      {:fill "blue" :name "sub", :size 600}
+      {:fill "blue" :name "sum", :size 280}
+      {:fill "blue" :name "update", :size 307}
+      {:fill "blue" :name "variance", :size 335}
+      {:fill "blue" :name "where", :size 299}
+      {:fill "blue" :name "xor", :size 354}
+      {:fill "blue" :name "_", :size 264}]}
+    {:fill "blue" :name "Minimum", :size 843}
+    {:fill "blue" :name "Not", :size 1554}
+    {:fill "blue" :name "Or", :size 970}
+    {:fill "blue" :name "Query", :size 13896}
+    {:fill "blue" :name "Range", :size 1594}
+    {:fill "blue" :name "StringUtil", :size 4130}
+    {:fill "blue" :name "Sum", :size 791}
+    {:fill "blue" :name "Variable", :size 1124}
+    {:fill "blue" :name "Variance", :size 1876}
+    {:fill "blue" :name "Xor", :size 1101}]}
+  {:fill "blue" :name "scale",
    :children
-   [{:name "IScaleMap", :size 2105}
-    {:name "LinearScale", :size 1316}
-    {:name "LogScale", :size 3151}
-    {:name "OrdinalScale", :size 3770}
-    {:name "QuantileScale", :size 2435}
-    {:name "QuantitativeScale", :size 4839}
-    {:name "RootScale", :size 1756}
-    {:name "Scale", :size 4268}
-    {:name "ScaleType", :size 1821}
-    {:name "TimeScale", :size 5833}]}
-  {:name "util",
+   [{:fill "blue" :name "IScaleMap", :size 2105}
+    {:fill "blue" :name "LinearScale", :size 1316}
+    {:fill "blue" :name "LogScale", :size 3151}
+    {:fill "blue" :name "OrdinalScale", :size 3770}
+    {:fill "blue" :name "QuantileScale", :size 2435}
+    {:fill "purple" :name "QuantitativeScale", :size 4839}
+    {:fill "blue" :name "RootScale", :size 1756}
+    {:fill "blue" :name "Scale", :size 4268}
+    {:fill "blue" :name "ScaleType", :size 1821}
+    {:fill "blue" :name "TimeScale", :size 5833}]}
+  {:fill "blue" :name "util",
    :children
-   [{:name "Arrays", :size 8258}
-    {:name "Colors", :size 10001}
-    {:name "Dates", :size 8217}
-    {:name "Displays", :size 12555}
-    {:name "Filter", :size 2324}
-    {:name "Geometry", :size 10993}
-    {:name "heap",
+   [{:fill "blue" :name "Arrays", :size 8258}
+    {:fill "blue" :name "Colors", :size 10001}
+    {:fill "blue" :name "Dates", :size 8217}
+    {:fill "blue" :name "Displays", :size 12555}
+    {:fill "blue" :name "Filter", :size 2324}
+    {:fill "blue" :name "Geometry", :size 10993}
+    {:fill "blue" :name "heap",
      :children
-     [{:name "FibonacciHeap", :size 9354}
-      {:name "HeapNode", :size 1233}]}
-    {:name "IEvaluable", :size 335}
-    {:name "IPredicate", :size 383}
-    {:name "IValueProxy", :size 874}
-    {:name "math",
+     [{:fill "red" :name "FibonacciHeap", :size 9354}
+      {:fill "blue" :name "HeapNode", :size 1233}]}
+    {:fill "blue" :name "IEvaluable", :size 335}
+    {:fill "blue" :name "IPredicate", :size 383}
+    {:fill "blue" :name "IValueProxy", :size 874}
+    {:fill "blue" :name "math",
      :children
-     [{:name "DenseMatrix", :size 3165}
-      {:name "IMatrix", :size 2815}
-      {:name "SparseMatrix", :size 3366}]}
-    {:name "Maths", :size 17705}
-    {:name "Orientation", :size 1486}
-    {:name "palette",
+     [{:fill "blue" :name "DenseMatrix", :size 3165}
+      {:fill "blue" :name "IMatrix", :size 2815}
+      {:fill "blue" :name "SparseMatrix", :size 3366}]}
+    {:fill "blue" :name "Maths", :size 17705}
+    {:fill "blue" :name "Orientation", :size 1486}
+    {:fill "blue" :name "palette",
      :children
-     [{:name "ColorPalette", :size 6367}
-      {:name "Palette", :size 1229}
-      {:name "ShapePalette", :size 2059}
-      {:name "SizePalette", :size 2291}]}
-    {:name "Property", :size 5559}
-    {:name "Shapes", :size 19118}
-    {:name "Sort", :size 6887}
-    {:name "Stats", :size 6557}
-    {:name "Strings", :size 22026}]}
-  {:name "vis",
+     [{:fill "blue" :name "ColorPalette", :size 6367}
+      {:fill "blue" :name "Palette", :size 1229}
+      {:fill "blue" :name "ShapePalette", :size 2059}
+      {:fill "blue" :name "SizePalette", :size 2291}]}
+    {:fill "blue" :name "Property", :size 5559}
+    {:fill "blue" :name "Shapes", :size 19118}
+    {:fill "blue" :name "Sort", :size 6887}
+    {:fill "blue" :name "Stats", :size 6557}
+    {:fill "blue" :name "Strings", :size 22026}]}
+  {:fill "blue" :name "vis",
    :children
-   [{:name "axis",
+   [{:fill "blue" :name "axis",
      :children
-     [{:name "Axes", :size 1302}
-      {:name "Axis", :size 24593}
-      {:name "AxisGridLine", :size 652}
-      {:name "AxisLabel", :size 636}
-      {:name "CartesianAxes", :size 6703}]}
-    {:name "controls",
+     [{:fill "blue" :name "Axes", :size 1302}
+      {:fill "blue" :name "Axis", :size 24593}
+      {:fill "blue" :name "AxisGridLine", :size 652}
+      {:fill "blue" :name "AxisLabel", :size 636}
+      {:fill "blue" :name "CartesianAxes", :size 6703}]}
+    {:fill "blue" :name "controls",
      :children
-     [{:name "AnchorControl", :size 2138}
-      {:name "ClickControl", :size 3824}
-      {:name "Control", :size 1353}
-      {:name "ControlList", :size 4665}
-      {:name "DragControl", :size 2649}
-      {:name "ExpandControl", :size 2832}
-      {:name "HoverControl", :size 4896}
-      {:name "IControl", :size 763}
-      {:name "PanZoomControl", :size 5222}
-      {:name "SelectionControl", :size 7862}
-      {:name "TooltipControl", :size 8435}]}
-    {:name "data",
+     [{:fill "blue" :name "AnchorControl", :size 2138}
+      {:fill "blue" :name "ClickControl", :size 3824}
+      {:fill "blue" :name "Control", :size 1353}
+      {:fill "blue" :name "ControlList", :size 4665}
+      {:fill "blue" :name "DragControl", :size 2649}
+      {:fill "blue" :name "ExpandControl", :size 2832}
+      {:fill "blue" :name "HoverControl", :size 4896}
+      {:fill "blue" :name "IControl", :size 763}
+      {:fill "blue" :name "PanZoomControl", :size 5222}
+      {:fill "blue" :name "SelectionControl", :size 7862}
+      {:fill "blue" :name "TooltipControl", :size 8435}]}
+    {:fill "blue" :name "data",
      :children
-     [{:name "Data", :size 20544}
-      {:name "DataList", :size 19788}
-      {:name "DataSprite", :size 10349}
-      {:name "EdgeSprite", :size 3301}
-      {:name "NodeSprite", :size 19382}
-      {:name "render",
+     [{:fill "blue" :name "Data", :size 20544}
+      {:fill "blue" :name "DataList", :size 19788}
+      {:fill "blue" :name "DataSprite", :size 10349}
+      {:fill "blue" :name "EdgeSprite", :size 3301}
+      {:fill "blue" :name "NodeSprite", :size 19382}
+      {:fill "blue" :name "render",
        :children
-       [{:name "ArrowType", :size 698}
-        {:name "EdgeRenderer", :size 5569}
-        {:name "IRenderer", :size 353}
-        {:name "ShapeRenderer", :size 2247}]}
-      {:name "ScaleBinding", :size 11275}
-      {:name "Tree", :size 7147}
-      {:name "TreeBuilder", :size 9930}]}
-    {:name "events",
+       [{:fill "blue" :name "ArrowType", :size 698}
+        {:fill "blue" :name "EdgeRenderer", :size 5569}
+        {:fill "blue" :name "IRenderer", :size 353}
+        {:fill "blue" :name "ShapeRenderer", :size 2247}]}
+      {:fill "blue" :name "ScaleBinding", :size 11275}
+      {:fill "blue" :name "Tree", :size 7147}
+      {:fill "blue" :name "TreeBuilder", :size 9930}]}
+    {:fill "blue" :name "events",
      :children
-     [{:name "DataEvent", :size 2313}
-      {:name "SelectionEvent", :size 1880}
-      {:name "TooltipEvent", :size 1701}
-      {:name "VisualizationEvent", :size 1117}]}
-    {:name "legend",
+     [{:fill "blue" :name "DataEvent", :size 2313}
+      {:fill "blue" :name "SelectionEvent", :size 1880}
+      {:fill "blue" :name "TooltipEvent", :size 1701}
+      {:fill "blue" :name "VisualizationEvent", :size 1117}]}
+    {:fill "blue" :name "legend",
      :children
-     [{:name "Legend", :size 20859}
-      {:name "LegendItem", :size 4614}
-      {:name "LegendRange", :size 10530}]}
-    {:name "operator",
+     [{:fill "blue" :name "Legend", :size 20859}
+      {:fill "blue" :name "LegendItem", :size 4614}
+      {:fill "blue" :name "LegendRange", :size 10530}]}
+    {:fill "blue" :name "operator",
      :children
-     [{:name "distortion",
+     [{:fill "blue" :name "distortion",
        :children
-       [{:name "BifocalDistortion", :size 4461}
-        {:name "Distortion", :size 6314}
-        {:name "FisheyeDistortion", :size 3444}]}
-      {:name "encoder",
+       [{:fill "blue" :name "BifocalDistortion", :size 4461}
+        {:fill "blue" :name "Distortion", :size 6314}
+        {:fill "blue" :name "FisheyeDistortion", :size 3444}]}
+      {:fill "blue" :name "encoder",
        :children
-       [{:name "ColorEncoder", :size 3179}
-        {:name "Encoder", :size 4060}
-        {:name "PropertyEncoder", :size 4138}
-        {:name "ShapeEncoder", :size 1690}
-        {:name "SizeEncoder", :size 1830}]}
-      {:name "filter",
+       [{:fill "blue" :name "ColorEncoder", :size 3179}
+        {:fill "blue" :name "Encoder", :size 4060}
+        {:fill "blue" :name "PropertyEncoder", :size 4138}
+        {:fill "blue" :name "ShapeEncoder", :size 1690}
+        {:fill "blue" :name "SizeEncoder", :size 1830}]}
+      {:fill "blue" :name "filter",
        :children
-       [{:name "FisheyeTreeFilter", :size 5219}
-        {:name "GraphDistanceFilter", :size 3165}
-        {:name "VisibilityFilter", :size 3509}]}
-      {:name "IOperator", :size 1286}
-      {:name "label",
+       [{:fill "blue" :name "FisheyeTreeFilter", :size 5219}
+        {:fill "blue" :name "GraphDistanceFilter", :size 3165}
+        {:fill "blue" :name "VisibilityFilter", :size 3509}]}
+      {:fill "blue" :name "IOperator", :size 1286}
+      {:fill "blue" :name "label",
        :children
-       [{:name "Labeler", :size 9956}
-        {:name "RadialLabeler", :size 3899}
-        {:name "StackedAreaLabeler", :size 3202}]}
-      {:name "layout",
+       [{:fill "blue" :name "Labeler", :size 9956}
+        {:fill "blue" :name "RadialLabeler", :size 3899}
+        {:fill "blue" :name "StackedAreaLabeler", :size 3202}]}
+      {:fill "blue" :name "layout",
        :children
-       [{:name "AxisLayout", :size 6725}
-        {:name "BundledEdgeRouter", :size 3727}
-        {:name "CircleLayout", :size 9317}
-        {:name "CirclePackingLayout", :size 12003}
-        {:name "DendrogramLayout", :size 4853}
-        {:name "ForceDirectedLayout", :size 8411}
-        {:name "IcicleTreeLayout", :size 4864}
-        {:name "IndentedTreeLayout", :size 3174}
-        {:name "Layout", :size 7881}
-        {:name "NodeLinkTreeLayout", :size 12870}
-        {:name "PieLayout", :size 2728}
-        {:name "RadialTreeLayout", :size 12348}
-        {:name "RandomLayout", :size 870}
-        {:name "StackedAreaLayout", :size 9121}
-        {:name "TreeMapLayout", :size 9191}]}
-      {:name "Operator", :size 2490}
-      {:name "OperatorList", :size 5248}
-      {:name "OperatorSequence", :size 4190}
-      {:name "OperatorSwitch", :size 2581}
-      {:name "SortOperator", :size 2023}]}
-    {:name "Visualization", :size 16540}]}]}
+       [{:fill "blue" :name "AxisLayout", :size 6725}
+        {:fill "blue" :name "BundledEdgeRouter", :size 3727}
+        {:fill "blue" :name "CircleLayout", :size 9317}
+        {:fill "blue" :name "CirclePackingLayout", :size 12003}
+        {:fill "blue" :name "DendrogramLayout", :size 4853}
+        {:fill "blue" :name "ForceDirectedLayout", :size 8411}
+        {:fill "blue" :name "IcicleTreeLayout", :size 4864}
+        {:fill "blue" :name "IndentedTreeLayout", :size 3174}
+        {:fill "blue" :name "Layout", :size 7881}
+        {:fill "blue" :name "NodeLinkTreeLayout", :size 12870}
+        {:fill "blue" :name "PieLayout", :size 2728}
+        {:fill "blue" :name "RadialTreeLayout", :size 12348}
+        {:fill "blue" :name "RandomLayout", :size 870}
+        {:fill "blue" :name "StackedAreaLayout", :size 9121}
+        {:fill "blue" :name "TreeMapLayout", :size 9191}]}
+      {:fill "blue" :name "Operator", :size 2490}
+      {:fill "blue" :name "OperatorList", :size 5248}
+      {:fill "blue" :name "OperatorSequence", :size 4190}
+      {:fill "blue" :name "OperatorSwitch", :size 2581}
+      {:fill "blue" :name "SortOperator", :size 2023}]}
+    {:fill "blue" :name "Visualization", :size 16540}]}]}
