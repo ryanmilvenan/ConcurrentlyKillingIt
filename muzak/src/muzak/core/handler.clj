@@ -106,7 +106,6 @@
   (GET "/" [] (response (page-frame)))
   (GET "/ws" [] (-> ws-handler
                     (wrap-websocket-handler {:format :json-kw})))
-  (GET "/hdf5" [] (response (get-song testComp)))
   (resources "/"))
 
 (def app

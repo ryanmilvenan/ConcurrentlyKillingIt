@@ -41,7 +41,8 @@
                    "resources/lib/cisd-jhdf5.jar"
                    ;"resources/lib/commons-io.jar"
                    ;"resources/lib/commons-lang.jar"
-                   "resources/lib/nativejar/hdf5-windows-intel.jar"]
+                   "resources/lib/nativejar/hdf5-windows-intel.jar"
+                   "resources/lib/nativejar/hdf5-macosx-intel.jar"]
 
   :repl-options {:nrepl-middleware [lighttable.nrepl.handler/lighttable-ops]}
 
