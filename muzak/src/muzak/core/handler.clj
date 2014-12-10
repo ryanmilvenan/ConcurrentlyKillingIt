@@ -87,7 +87,7 @@
 
 ;Magic (since it doesn't take any client search params) - overwrites resources/public/muzak.edn
 (defn magic-build-edn []
-  (def paths (map get-path (take 300 (get-h5-files))))
+  (def paths (map get-path (take 100 (get-h5-files))))
 
   ;NOTE: JHDF5 API says we are supposed to close the readers - we are not (MEM-LEAK ??)
 
@@ -139,7 +139,7 @@
                     (wrap-websocket-handler {:format :json-kw})))
   (GET "/rebuild-edn" []
        (magic-write-edn)
-       response "now refresh main page")
+       (response "now refresh main page"))
   (resources "/"))
 
 (def app
