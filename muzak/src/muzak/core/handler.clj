@@ -66,6 +66,19 @@
 ;pass testF to get-song for testing
 (def testF "resources/TRAXLZU12903D05F94.h5")
 
+;returns true if song:terms contains term, otherwise returns false
+(defn check-song [term, song]
+  (some? (some #{term} (get song :terms))))
+
+;returns a list of maps that is a subset of songs where :terms contains term
+(defn filter-songs [term, songs]
+  (filter (partial check-song term) songs))
+
+;tests for filter-songs. "pop" returns 1 result, "metal" returns 0 results
+;(def s (get-song testF))
+;(filter-songs "pop" [s])
+;(filter-songs "metal" [s])
+
 ;; Event listeners
 (defn ws-handler [{:keys [ws-channel] :as req}]
   (println "Opened connection from" (:remote-addr req))
