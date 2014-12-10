@@ -35,36 +35,36 @@
   ;;(response "") 201
   )
 
-(defn hdf5-get-reader []
-  (. ch.systemsx.cisd.hdf5.HDF5Factory openForReading "resources/TRAXLZU12903D05F94.h5"))
+;gets an hdf5 reader
+(defn get-reader [f]
+  (. ch.systemsx.cisd.hdf5.HDF5Factory openForReading f))
 
-; NOTE: I believe that the Song_Title is part of a compound data set, needing a compound reader
-(defn hdf5-getCompoundHdf5Reader [hr]
+;gets a string reader from an hdf5 reader
+(defn getStringHdf5Reader [hr]
+  (.string hr))
+
+;gets a compound reader from an hdf5 reader
+(defn getCompoundHdf5Reader [hr]
   (.compound hr))
 
-;builds a map of attribute-value pairs
-(defn hdf5-get-attribute [cr, x]
+;gets an array of terms (data) from an hdf5 reader
+(defn get-terms [hr]
+  (def sr (getStringHdf5Reader hr))
+  (vec (.readArray sr "/metadata/artist_terms")))
+
+;test with testF
+;gets a map of attribute-value pairs (tag-data pairs) from an h5 file
+(defn get-song [f]
+  (def hr (get-reader f))
+  (def cr (getCompoundHdf5Reader hr))
   (def rec (.read cr "/metadata/songs" ch.systemsx.cisd.hdf5.HDF5CompoundDataMap))
-  {x (get rec x)})
+  {:artist (get rec "artist_name"),
+   :title (get rec "title"),
+   :r (* 100 (get rec "song_hotttnesss"))
+   :terms (get-terms hr)})
 
-;test with testComp
-(defn get-song [x]
-  (def hr (hdf5-get-reader))
-  (def cr (hdf5-getCompoundHdf5Reader hr))
-  (into {} (map (partial hdf5-get-attribute cr) x)))
-
-;use to test get-song (does not work, needs compound reader)
-;(def testParams [{:path "/metadata/songs" :attr "artist_name"} {:path "/metadata/songs" :attr "title"}])
-;use to test get-song (works)
-;(def testOriginal [{:path "/metadata/artist_terms" :attr "title"}])
-(def testComp ["artist_name" "title"])
-
-
-;(defn hdf5-getCompoundValue [hr]
-;  (def cr (hdf5-getCompoundHdf5Reader hr))
-  ; FAIL - We don't know what type of Java object to ask for (ref: http://svncisd.ethz.ch/doc/hdf5/hdf5-13.06/
-;  )
-
+;pass testF to get-song for testing
+(def testF "resources/TRAXLZU12903D05F94.h5")
 
 ;; Event listeners
 (defn ws-handler [{:keys [ws-channel] :as req}]
@@ -105,6 +105,9 @@
 ;  (def writer (.writer wconfig))
 ;  (.close writer))
 
+;builds a map of attribute-value pairs
+;(defn get-song-data [rec, x]
+;  {x (get rec x)})
 
 ;David_Edit my compiler is yelling at arguments "[hr] [x]" - is this legal or typo?
 ;(defn hdf5-get-compound [hr, x]
