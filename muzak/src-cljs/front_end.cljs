@@ -24,7 +24,10 @@
             data (get-in msg [:message :data])]
         (cond
          (= event "state") (update-state data)
-         (= event "result") (swap! !msgs add-msg msg)
+         (= event "result") (
+                             ;swap! !msgs add-msg msg
+                             (bubble-chart {:!msgs !msgs})
+                             )
          :else (swap! !msgs add-msg msg))
       )
       (recur))))

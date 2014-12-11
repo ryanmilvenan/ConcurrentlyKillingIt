@@ -39,7 +39,7 @@
 ;; Event Handler Functions
 (defn parse-event-handler [ws-channel addr data error]
   (update-search-map addr data)
-  (magic-write-edn)
+  (magic-write-edn data)
   (>!! ws-channel (if error
                     (format "Error: '%s'." (pr-str data))
                     (hash-map :event "result" :data data))))
@@ -73,9 +73,11 @@
   (GET "/" [] (response (page-frame)))
   (GET "/ws" [] (-> ws-handler
                     (wrap-websocket-handler {:format :json-kw})))
-  ;;(GET "/rebuild-edn" []
-       ;;(magic-write-edn)
-       ;;(response "now refresh main page"))
+  (GET "/rebuild-edn" []
+       (magic-write-edn)
+       ;(response "now refresh main page"))
+       (response (page-frame)))
+
   (resources "/"))
 
 (def app

@@ -22,6 +22,11 @@
 (defn hdf5-getCompoundHdf5Reader [hr]
   (.compound hr))
 
+;gets an array of terms (data) from an hdf5 reader
+(defn get-terms [hr]
+  (def sr (.string hr)) ;Get a HDF5StringReader
+  (vec (.readArray sr "/metadata/artist_terms")))
+
 ; color generator
 (def dot-colors ["blue" "green" "yellow" "purple" "red" "cyan"])
 
@@ -29,16 +34,17 @@
   (defn rand-color []
     (get dot-colors (rand-int number-colors))))
 
-
 ;Get the "title" field from the Compound DataSet "/metadata/songs" for given relative path
 (defn get-song [path]
-  (def cr (hdf5-getCompoundHdf5Reader (get-h5-reader path)))
+  (def hr (get-h5-reader path))
+  (def cr (hdf5-getCompoundHdf5Reader hr))
   (def rec (.read cr "/metadata/songs" ch.systemsx.cisd.hdf5.HDF5CompoundDataMap))
   (let [bubble_size 100] ; default mulitplier
 
     {:name (get rec "title"), :artist (get rec "artist_name"), :album (get rec "release"),
        :id (get rec "song_id")
 
+       :terms (get-terms hr),
        :fill (rand-color),
 
        :size (* bubble_size (get rec "song_hotttnesss")) ;default bubble size field (client can choose other field)
@@ -56,8 +62,9 @@
 
 ;Magic (since it doesn't take any client search params) - overwrites resources/public/muzak.edn
 (defn magic-build-edn []
-  (def paths (map get-path (take 100 (get-h5-files))))
+  (def all-paths (map get-path (get-h5-files)))
 
+  (def paths (take 100 all-paths))
   ;NOTE: JHDF5 API says we are supposed to close the readers - we are not (MEM-LEAK ??)
 
   {:name "all" :r 100 :fill "#3182bd" ;some defaults for parent bubble/circle
