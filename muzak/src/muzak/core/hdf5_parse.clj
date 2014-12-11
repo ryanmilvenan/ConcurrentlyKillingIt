@@ -92,7 +92,7 @@
 ;Search 100 songs and return those that match client-filter-term
 ;ex `(magic-write-edn "rock")`
 (defn magic-write-edn [client-filter-term]
-  (write-edn (magic-build-edn) "resources/public/muzak.edn"))
+  (write-edn (magic-build-edn client-filter-term) "resources/public/muzak.edn"))
 
 
 
