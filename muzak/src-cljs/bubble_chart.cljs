@@ -32,7 +32,7 @@
 
       (.. node (append "circle")
         (attr "r" :r)
-        ;;***********NEEDS THIS PROPERTY(style "fill" "#3182bd")
+        ;;(style "fill" "#3182bd")
         ;;*** ALT - if the flare.edn map has a fill property, set directly on svg circle
           (attr "fill" :fill)
           )

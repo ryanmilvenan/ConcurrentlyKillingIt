@@ -14,7 +14,7 @@
                  [org.clojure/clojurescript "0.0-2268"]
 
                  [prismatic/dommy "0.1.2"]
-
+                 [net.drib/strokes "0.5.1"]
                  [jarohen/clidget "0.2.0"]
 
                  [lein-light-nrepl "0.1.0"]]

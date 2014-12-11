@@ -39,7 +39,7 @@
 ;; Event Handler Functions
 (defn parse-event-handler [ws-channel addr data error]
   (update-search-map addr data)
-  ;;(magic-write-edn)
+  (magic-write-edn)
   (>!! ws-channel (if error
                     (format "Error: '%s'." (pr-str data))
                     (hash-map :event "result" :data data))))
