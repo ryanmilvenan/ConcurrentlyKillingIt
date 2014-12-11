@@ -7,6 +7,7 @@
 (strokes/bootstrap)
 
 (defwidget bubble-chart [{:keys [msgs]}]
+  (def initial "muzak.edn")
   (def diameter 960)
   (def formatfn (-> d3 (.format ",d")))
 
@@ -20,8 +21,9 @@
   (append "g")
     (attr "transform" "translate(2,2)")))
 
-    (strokes/fetch-edn "muzak.edn" (fn [error, root]
-      (let [node (.. svg (datum root) (selectAll ".node")
+  (defn drawBubbles [data]
+    (strokes/fetch-edn data (fn [error, root]
+      (let [node (.. svg (datum root) (selectAll ".node") (remove)
                     (data (repersist (.-nodes pack) :skip [:children :parent]))
                   (enter) (append "g")
                     (attr "class" #(if (contains? % :children) "node" "leaf node"))
@@ -40,9 +42,12 @@
       (.. node (filter #(not (:children %))) (append "text")
         (attr "dy" ".3em")
         (style "text-anchor" "middle")
-        (text #(subs (:name %) 0 (/ (:r %) 3)))) )))
+        (text #(subs (:name %) 0 (/ (:r %) 3)))))))
+
 
   (.. d3 (select (.-frameElement js/self)) (style "height" (str diameter "px"))))
+  (drawBubbles initial)
+
 
 (comment
   (node
