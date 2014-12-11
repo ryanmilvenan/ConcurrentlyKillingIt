@@ -45,9 +45,9 @@
         (text #(subs (:name %) 0 (/ (:r %) 3)))))))
 
 
-  (.. d3 (select (.-frameElement js/self)) (style "height" (str diameter "px")))))
+  (.. d3 (select (.-frameElement js/self)) (style "height" (str diameter "px"))))
 
-(drawBubbles initial)
+  (drawBubbles initial))
 
 
 (comment

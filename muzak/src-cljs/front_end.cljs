@@ -5,7 +5,7 @@
             [cljs.core.async :refer [chan <! >! put! close! timeout]]
             [dommy.core :as d]
             [cljs.reader :as edn]
-            [clidget.widget :refer-macros [defwidget]])
+            [clidget.widget :refer-macros [defwidget drawBubbles]])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]
                    [dommy.macros :refer [node sel1]]))
 
@@ -25,8 +25,9 @@
         (cond
          (= event "state") (update-state data)
          (= event "result") (
-                             ;swap! !msgs add-msg msg
-                             (bubble-chart {:!msgs !msgs})
+                             swap! !msgs add-msg msg
+                             ;NEED TO REDRAW server-updated "muzak.edn"
+                             ;(drawBubbles "muzak.edn")
                              )
          :else (swap! !msgs add-msg msg))
       )

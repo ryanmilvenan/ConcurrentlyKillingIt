@@ -39,6 +39,9 @@
 ;; Event Handler Functions
 (defn parse-event-handler [ws-channel addr data error]
   (update-search-map addr data)
+  ;; NEED Mangle client request into single like "rock"
+  ;;    TODO - Should be easy to extend HDF5 filter to work with collection of string terms
+  ;; something like ("rock" "pop" "metal")
   (magic-write-edn data)
   (>!! ws-channel (if error
                     (format "Error: '%s'." (pr-str data))
@@ -74,7 +77,7 @@
   (GET "/ws" [] (-> ws-handler
                     (wrap-websocket-handler {:format :json-kw})))
   (GET "/rebuild-edn" []
-       (magic-write-edn)
+       (magic-write-edn "rock")
        ;(response "now refresh main page"))
        (response (page-frame)))
 
