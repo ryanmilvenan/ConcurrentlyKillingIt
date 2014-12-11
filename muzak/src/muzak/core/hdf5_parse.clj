@@ -56,22 +56,42 @@
        :artist_longitude (get rec "artist_longitude")
      }))
 
+;returns true if song:terms contains term, otherwise returns false
+(defn check-song [term, song]
+  (some? (some #{term} (get song :terms))))
+
+;returns a vector subset of songs where :terms contains filter-term
+(defn filterv-songs [filter-term, songs]
+  (filterv (partial check-song filter-term) songs))
+
 ; ex: (write-edn "resources/public/muzak.edn")
 (defn write-edn [obj f-out]
   (spit f-out (pr-str obj)))
 
 ;Magic (since it doesn't take any client search params) - overwrites resources/public/muzak.edn
-(defn magic-build-edn []
+(defn magic-build-edn [client-filter-term]
   (def all-paths (map get-path (get-h5-files)))
 
   (def paths (take 100 all-paths))
   ;NOTE: JHDF5 API says we are supposed to close the readers - we are not (MEM-LEAK ??)
 
+  ;Get first 100 song object if serach term is blank, else filter first 100
+  (def children
+    (cond
+      (= client-filter-term "") (mapv get-song paths)
+       :else (filterv-songs client-filter-term (map get-song paths))
+     ))
   {:name "all" :r 100 :fill "#3182bd" ;some defaults for parent bubble/circle
-     :children (mapv get-song paths)})
+     :children children})
 
 ;Magic since it doesn't take client search request OR output destination to overwrite
-(defn magic-write-edn []
+(defn magic-write-edn [client-filter-term]
+  (write-edn (magic-build-edn) "resources/public/muzak.edn"))
+
+
+;Search 100 songs and return those that match client-filter-term
+;ex `(magic-write-edn "rock")`
+(defn magic-write-edn [client-filter-term]
   (write-edn (magic-build-edn) "resources/public/muzak.edn"))
 
 
@@ -121,13 +141,14 @@
 ;pass testF to get-song for testing
 ;;(def testF "resources/TRAXLZU12903D05F94.h5")
 
+;Sorry Josh -- just trying to get order in file right, these moved above
 ;returns true if song:terms contains term, otherwise returns false
-(defn check-song [term, song]
-  (some? (some #{term} (get song :terms))))
+;(defn check-song [term, song]
+;  (some? (some #{term} (get song :terms))))
 
 ;returns a list of maps that is a subset of songs where :terms contains term
-(defn filter-songs [term, songs]
-  (filter (partial check-song term) songs))
+;(defn filter-songs [term, songs]
+;  (filter (partial check-song term) songs))
 
 ;tests for filter-songs. "pop" returns 1 result, "metal" returns 0 results
 ;(def s (get-song testF))
