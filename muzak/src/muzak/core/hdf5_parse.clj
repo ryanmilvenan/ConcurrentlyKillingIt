@@ -73,7 +73,14 @@
 
 ;Magic (since it doesn't take any client search params) - overwrites resources/public/muzak.edn
 (defn magic-build-edn [client-filter-term]
-  (def all-paths (map get-path (get-h5-files)))
+
+  ;; WARNING - On some machines, attempting to open too many .h5 files (> 500) causes
+  ;; NullPointerException H5Dread_string:  buf length <=0  ch.systemsx.cisd.hdf5.hdf5lib.H5.H5Dread_string (H5.java:-2)
+  ;; WORKAROUND is to limit number of .h5 files that we consider
+
+  ;(def all-paths (map get-path (get-h5-files)))
+
+  (def all-paths (map get-path (take 500 (get-h5-files))))
 
   ;builds a lazy sequence of all paths in 10 item blocks
   ;(def paths (partition 10 10 nil all-paths))
