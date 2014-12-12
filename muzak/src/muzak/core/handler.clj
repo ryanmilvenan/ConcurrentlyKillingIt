@@ -40,10 +40,12 @@
 (defn parse-event-handler [ws-channel addr data error]
   (update-search-map addr data)
   ;; NEED Mangle client request into single like "rock"
-  (def keywords (clojure.string/lower-case (apply name (filter (merge-with not= data default-map) (keys data)))))
+  (def keywords (keys (apply dissoc data (keep #(-> % val (= true) (if nil (key %))) data))))
+  (def stringList (first (map clojure.string/lower-case (map name keywords))))
+  (def inputList (cond (= nil stringList) "" :else stringList))
   ;;    TODO - Should be easy to extend HDF5 filter to work with collection of string terms
   ;; something like ("rock" "pop" "metal")
-  (magic-write-edn keywords)
+  (magic-write-edn inputList)
   (>!! ws-channel (if error
                     (format "Error: '%s'." (pr-str data))
                     (hash-map :event "result" :data data))))
