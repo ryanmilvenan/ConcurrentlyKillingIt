@@ -61,8 +61,11 @@
   (some? (some #{term} (get song :terms))))
 
 ;returns a vector subset of songs where :terms contains filter-term
-(defn filterv-songs [filter-term, songs]
-  (filterv (partial check-song filter-term) songs))
+(defn filter-songs [filter-term, songs]
+  (filter (partial check-song filter-term) songs))
+
+(defn get-filtered-songs [f, p]
+  (filter-songs f (map get-song p)))
 
 ; ex: (write-edn "resources/public/muzak.edn")
 (defn write-edn [obj f-out]
@@ -72,14 +75,15 @@
 (defn magic-build-edn [client-filter-term]
   (def all-paths (map get-path (get-h5-files)))
 
-  (def paths (take 100 all-paths))
+  ;builds a lazy sequence of all paths in 10 item blocks
+  (def paths (partition 100 100 nil all-paths))
   ;NOTE: JHDF5 API says we are supposed to close the readers - we are not (MEM-LEAK ??)
 
   ;Get first 100 song object if serach term is blank, else filter first 100
   (def children
     (cond
-      (= client-filter-term "") (mapv get-song paths)
-       :else (filterv-songs client-filter-term (map get-song paths))
+      (= client-filter-term "") (mapv get-song (first paths))
+       :else (take 100 (map (partial get-filtered-songs client-filter-term) paths))
      ))
   {:name "all" :r 100 :fill "#3182bd" ;some defaults for parent bubble/circle
      :children children})

@@ -11,3 +11,4 @@ pom.xml.asc
 chord/
 build/
 .DS_Store
+MillionSongSubset/
