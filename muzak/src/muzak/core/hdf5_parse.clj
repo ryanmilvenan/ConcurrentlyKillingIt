@@ -80,7 +80,7 @@
 
   ;(def all-paths (map get-path (get-h5-files)))
 
-  (def all-paths (map get-path (take 500 (get-h5-files))))
+  (def all-paths (take 700 (map get-path (get-h5-files))))
 
   ;builds a lazy sequence of all paths in 10 item blocks
   ;(def paths (partition 10 10 nil all-paths))
