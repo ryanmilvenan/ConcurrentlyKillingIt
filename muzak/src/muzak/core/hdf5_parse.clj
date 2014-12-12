@@ -76,14 +76,15 @@
   (def all-paths (map get-path (get-h5-files)))
 
   ;builds a lazy sequence of all paths in 10 item blocks
-  (def paths (partition 100 100 nil all-paths))
+  ;(def paths (partition 10 10 nil all-paths))
   ;NOTE: JHDF5 API says we are supposed to close the readers - we are not (MEM-LEAK ??)
 
   ;Get first 100 song object if serach term is blank, else filter first 100
   (def children
     (cond
-      (= client-filter-term "") (mapv get-song (first paths))
-       :else (take 100 (map (partial get-filtered-songs client-filter-term) paths))
+      (= client-filter-term "") (vec (take 100 (map get-song all-paths)))
+       ;:else (take 10 (map (partial get-filtered-songs client-filter-term) paths))
+       :else (vec (take 100 (get-filtered-songs client-filter-term all-paths)))
      ))
   {:name "all" :r 100 :fill "#3182bd" ;some defaults for parent bubble/circle
      :children children})
